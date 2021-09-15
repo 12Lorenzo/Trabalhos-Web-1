@@ -1,0 +1,18 @@
+version: "3.8"
+services:
+  database:
+    image: mysql:latest
+    environment:
+      - MYSQL_ROOT_PASSWORD=example
+    ports:
+      - "3306:3306"
+
+  tomcat:
+    image: tomcat:9.0
+    environment:
+      - KATCHAU_DATABASE_USER=root
+      - KATCHAU_DATABASE_PASSWORD=password
+    volumes:
+      - "./target/Katchau-1.0-SNAPSHOT.war:/usr/local/tomcat/webapps/katchau.war"
+    ports:
+      - "8080:8080"
