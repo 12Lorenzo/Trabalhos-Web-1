@@ -42,7 +42,7 @@ create table Carro
     modelo    varchar(20),
     chassi    varchar(20),
     ano       integer,
-    km        varchar(10),
+    km        float,
     descricao text,
     valor     float,
     primary key (id),
@@ -65,3 +65,16 @@ create table Proposta
 
 insert into Usuario(codigo, email, senha, nome, adm)
 values ('000.000.000-00', 'ok@ok.com', 'ok', 'ok', 1);
+
+insert into Usuario(codigo, email, senha, nome, adm)
+values ('000.000.000/0001-01', 'loja@loja.com', 'loja', 'loja', 0);
+
+insert into Usuario(codigo, email, senha, nome, adm)
+values ('000.000.000/0001-02', 'loja2@loja.com', 'loja2', 'loja2', 0);
+
+insert into Loja(cnpj, descricao) values ('000.000.000/0001-01', 'loja 1');
+
+insert into Loja(cnpj, descricao) values ('000.000.000/0001-02', 'loja 2');
+
+insert into Carro(cnpj, placa, modelo, chassi, ano, km, descricao, valor) values ('000.000.000/0001-01','00001','carroa','none',1080,0,'carro antigo',2);
+insert into Carro(cnpj, placa, modelo, chassi, ano, km, descricao, valor) values ('000.000.000/0001-02','00002','carrob','none',1081,1,'carro antigo 2',3);

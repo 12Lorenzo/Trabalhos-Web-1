@@ -11,7 +11,8 @@ services:
     image: tomcat:9.0
     environment:
       - KATCHAU_DATABASE_USER=root
-      - KATCHAU_DATABASE_PASSWORD=password
+      - KATCHAU_DATABASE_PASSWORD=example
+      - DATABASE_URI=jdbc:mysql://trabalhos-web-1_database_1:3306/Katchau
     volumes:
       - "./target/Katchau-1.0-SNAPSHOT.war:/usr/local/tomcat/webapps/katchau.war"
     ports:
