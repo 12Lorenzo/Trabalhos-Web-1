@@ -47,7 +47,7 @@ public class ClienteDAO extends GenericDAO {
     public void insert(Cliente cliente){
         try {
             Connection conn = this.getConnection();
-            ResultSet resultSet;
+            //ResultSet resultSet;
 
             String sqlInsert = "INSERT INTO Cliente VALUES(?, ?, ?, ?)";
 
@@ -70,17 +70,39 @@ public class ClienteDAO extends GenericDAO {
     public void update(Cliente cliente){
         try {
             Connection conn = this.getConnection();
-            ResultSet resultSet;
+            //ResultSet resultSet;
 
-            String sqlUpdate = "UPDATE Cliente SET cpf = ?, telefone = ?, sexo = ?, nascimento = ?";
+            String sqlUpdate = "UPDATE Cliente SET telefone = ?, sexo = ?, nascimento = ? WHERE cliente.cpf = ?";
 
-            //CONTINUANDO
+            PreparedStatement statement = conn.prepareStatement(sqlUpdate);
+            statement.setString(1, cliente.getTelefone());
+            statement.setString(2, cliente.getSexo());
+            statement.setDate(3, new java.sql.Date(cliente.getNascimento().getTime()));
+            statement.setString(4, cliente.getCpf());
+
+            statement.executeQuery();
+
+            statement.close();
 
         } catch(SQLException e){
             throw new RuntimeException(e);
         }
+    }
 
+    public void delete(Cliente cliente){
+        try {
+            Connection conn = this.getConnection();
+            //ResultSet resultSet;
 
+            String sqlDelete = "DELETE Cliente WHERE cpf = ?";
+
+            PreparedStatement stantement = conn.prepareStatement(sqlDelete);
+            stantement.setString(1, cliente.getCpf());
+
+            stantement.executeQuery();
+        }catch(SQLException e){
+            throw new RuntimeException(e);
+        }
     }
 
 
