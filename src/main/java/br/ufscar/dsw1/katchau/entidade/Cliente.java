@@ -48,4 +48,17 @@ public class Cliente {
         this.nascimento = nascimento;
     }
 
+    public Cliente(){
+        super();
+    }
+
+    @Override
+    public String toString() {
+        return "Cliente{" +
+                "cpf='" + cpf + '\'' +
+                ", telefone='" + telefone + '\'' +
+                ", sexo='" + sexo + '\'' +
+                ", nascimento=" + nascimento +
+                '}';
+    }
 }

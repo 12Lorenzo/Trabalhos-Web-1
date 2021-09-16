@@ -8,7 +8,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ClienteDAO extends GenericDAO {
+public class ClienteDAO extends GenericDAO implements Cloneable {
     public List<Cliente> read() {
         String sqlSelect = "SELECT * FROM Cliente";
 
@@ -103,6 +103,53 @@ public class ClienteDAO extends GenericDAO {
         }catch(SQLException e){
             throw new RuntimeException(e);
         }
+    }
+
+    //@Override
+    public Cliente clone(Cliente cli){
+        Cliente novoCli = new  Cliente();
+        novoCli.setCpf(cli.getCpf());
+        novoCli.setTelefone(cli.getTelefone());
+        novoCli.setSexo(cli.getSexo());
+        novoCli.setNascimento(cli.getNascimento());
+
+        return novoCli;
+    }
+
+    public Cliente retornaCli(String cpfReceber){
+        /*String sqlSelect = "SELECT * FROM Cliente WHERE cliente.cpf = ?";
+
+        Cliente cli;
+        try {
+            Connection conn = this.getConnection();
+            ResultSet resultSet;
+
+            PreparedStatement statement = conn.prepareStatement(sqlSelect);
+            statement.setString(1, cpfReceber);
+            resultSet = statement.executeQuery();
+            System.out.println("Otimos meios de debug");
+            if(resultSet.next()){
+                String cpf = resultSet.getString("cpf");
+                String telefone = resultSet.getString("telefone");
+                Date nascimento = resultSet.getDate("nascimento");
+                String sexo = resultSet.getString("sexo");
+                System.out.println("Qualquer outra coisa");
+                cli = new Cliente(cpf, telefone, sexo, nascimento);
+                //cli = clone(cli1);
+            }else {
+                return null;
+            }
+
+            conn.close();
+            resultSet.close();
+
+        } catch(SQLException e){
+            throw new RuntimeException(e);
+        }
+        //cli = clone(cli1);
+
+        return cli;*/
+        return null;
     }
 
 

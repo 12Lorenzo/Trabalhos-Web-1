@@ -11,6 +11,7 @@ public class Proposta {
     private float val;
     private String cnpj;
     private Long carro_id;
+    private String condPag;
 
     public Long getId() {
         return id;
@@ -60,7 +61,16 @@ public class Proposta {
             (Long carro_id) {
         this.carro_id = carro_id;
     }
-    public Proposta(Long id,int status,Date data,float val,String cnpj,Long carro_id){
+
+    public void setCondPag(String condPag) {
+        this.condPag = condPag;
+    }
+
+    public String getCondPag(){
+        return condPag;
+    }
+
+    public Proposta(Long id,int status,Date data,float val,String cnpj,Long carro_id, String condPag){
         super();
         this.id = id;
         this.status = status;
@@ -68,6 +78,7 @@ public class Proposta {
         this.val = val;
         this.cnpj = cnpj;
         this.carro_id = carro_id;
+        this.condPag = condPag;
     }
     public Proposta(int status,Date data,float val,String cnpj,Long carro_id){
         super();

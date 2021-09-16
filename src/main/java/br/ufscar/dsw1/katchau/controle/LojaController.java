@@ -35,4 +35,6 @@ public class LojaController extends HttpServlet {
         RequestDispatcher dispatcher = request.getRequestDispatcher("/logado/listaLoja.jsp");
         dispatcher.forward(request, response);
     }
+
+
 }
