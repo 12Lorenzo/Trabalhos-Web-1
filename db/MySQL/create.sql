@@ -7,7 +7,6 @@ database Katchau;
 use
 Katchau;
 
-
 create table Usuario
 (
     codigo varchar(20)  not null,
