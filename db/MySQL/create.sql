@@ -75,5 +75,15 @@ insert into Loja(cnpj, descricao) values ('000.000.000/0001-01', 'loja 1');
 
 insert into Loja(cnpj, descricao) values ('000.000.000/0001-02', 'loja 2');
 
+insert into Usuario(codigo, email, senha, nome, adm)
+values ('000.000.001', 'cliente@cliente.com', 'cliente', 'cliente', 0);
+
+insert into Usuario(codigo, email, senha, nome, adm)
+values ('000.000.002', 'cliente2@cliente.com', 'cliente2', 'cliente2', 0);
+
+insert into Cliente(cpf, telefone, sexo, nascimento) VALUES ('000.000.001', '999999999', 'm','2001-03-01');
+insert into Cliente(cpf, telefone, sexo, nascimento) VALUES ('000.000.002', '992999999', 'f','2002-03-01');
+
 insert into Carro(cnpj, placa, modelo, chassi, ano, km, descricao, valor) values ('000.000.000/0001-01','00001','carroa','none',1080,0,'carro antigo',2);
 insert into Carro(cnpj, placa, modelo, chassi, ano, km, descricao, valor) values ('000.000.000/0001-02','00002','carrob','none',1081,1,'carro antigo 2',3);
+
