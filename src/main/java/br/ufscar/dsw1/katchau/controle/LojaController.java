@@ -23,14 +23,13 @@ public class LojaController extends HttpServlet {
         dao = new LojaDAO();
     }
 
-
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         lista(request, response);
     }
 
     private void lista(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        List<Loja> listaLojas = dao.select();
+        List<Loja> listaLojas = dao.read();
         request.setAttribute("listaLojas", listaLojas);
         System.out.println("-->" + listaLojas.toString());
         RequestDispatcher dispatcher = request.getRequestDispatcher("/logado/listaLoja.jsp");

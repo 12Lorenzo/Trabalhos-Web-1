@@ -29,7 +29,7 @@ public class ClienteController extends HttpServlet {
     }
 
     private void lista(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        List<Cliente> listaClientes = dao.select();
+        List<Cliente> listaClientes = dao.read();
         request.setAttribute("listaClientes", listaClientes);
         System.out.println("-->" + listaClientes.toString());
         RequestDispatcher dispatcher = request.getRequestDispatcher("/logado/listaCliente.jsp");

@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ClienteDAO extends GenericDAO {
-    public List<Cliente> select() {
+    public List<Cliente> read() {
         String sqlSelect = "SELECT * FROM Cliente";
 
         List<Cliente> listaClientes = new ArrayList<>();
