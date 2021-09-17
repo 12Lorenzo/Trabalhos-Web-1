@@ -2,6 +2,7 @@
 <%@ page isELIgnored="false"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/forms.css" />
 <html>
 <head>
     <title>Title</title>
@@ -10,7 +11,7 @@
 <%--Cliente(cpf, telefone, sexo, nascimento)--%>
 <form action="" method="${requestScope.get("formMethod") == null ?"post":requestScope.get("formMethod")}">
     <label for="cpf">CPF:</label><br>
-    <input <%= request.getAttribute("formMethod") != "post"? "disabled":"" %>
+    <input class="inCampo" <%= request.getAttribute("formMethod") != "post"? "disabled":"" %>
             type="text" id="cpf" name="cpf" value=
             "${(requestScope.cliente == null || requestScope.formMethod == "post"?"":requestScope.cliente.cpf)}"><br>
     <label for="telefone">telefone:</label><br>
