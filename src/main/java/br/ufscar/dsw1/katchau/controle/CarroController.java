@@ -32,7 +32,7 @@ public class CarroController extends HttpServlet {
     }
 
     private void lista(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        List<Carro> listaCarros = dao.getAll(null);
+        List<Carro> listaCarros = dao.getAll();
         request.setAttribute("listaCarros", listaCarros);
         System.out.println("-->" + listaCarros.toString());
         RequestDispatcher dispatcher = request.getRequestDispatcher("/logado/carro/lista.jsp");

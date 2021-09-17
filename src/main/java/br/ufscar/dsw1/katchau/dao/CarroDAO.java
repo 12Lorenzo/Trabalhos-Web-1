@@ -10,26 +10,52 @@ import java.util.List;
 
 public class CarroDAO extends GenericDAO{
 
-    public List<Carro> getAll(String lojaCnpj) {
+    public List<Carro> getAll() {
 
-        List<Carro> listaCarros = new ArrayList<>();
-
-//        String sql = "SELECT * from Carro c where c.cnpj = ?";
+        List<Carro> listaCarros;
         String sql1 = "SELECT * from Carro";
         try {
             Connection conn = this.getConnection();
             ResultSet resultSet;
-//            if(lojaCnpj != null) {
-//                PreparedStatement statement = conn.prepareStatement(sql);
-//
-//                statement.setString(1, lojaCnpj);
-//                resultSet = statement.executeQuery();
-//                statement.close();
-//            } else {
-                PreparedStatement statement = conn.prepareStatement(sql1);
-                resultSet = statement.executeQuery();
+            PreparedStatement statement = conn.prepareStatement(sql1);
+            resultSet = statement.executeQuery();
+            listaCarros = getFromResult(resultSet);
+            resultSet.close();
+            statement.close();
+            conn.close();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
 
-//            }
+        return listaCarros;
+    }
+
+    public List<Carro> getAll(String lojaCnpj) {
+
+        List<Carro> listaCarros;
+
+        String sql1 = "SELECT * from Carro c where c.cnpj = ?";
+        try {
+            Connection conn = this.getConnection();
+            ResultSet resultSet;
+            PreparedStatement statement = conn.prepareStatement(sql1);
+            statement.setString(1, lojaCnpj);
+            resultSet = statement.executeQuery();
+            listaCarros = getFromResult(resultSet);
+
+            resultSet.close();
+            statement.close();
+            conn.close();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+        return listaCarros;
+    }
+
+    private List<Carro> getFromResult(ResultSet resultSet){
+        List<Carro> listaCarros = new ArrayList<>();
+        try{
             while (resultSet.next()) {
                 Long id = resultSet.getLong("id");
                 String cnpj = resultSet.getString("cnpj");
@@ -45,14 +71,9 @@ public class CarroDAO extends GenericDAO{
 
                 listaCarros.add(carro);
             }
-//
-            resultSet.close();
-            statement.close();
-            conn.close();
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
+        }catch (SQLException throwables) {
+            throwables.printStackTrace();
         }
-
         return listaCarros;
     }
 }

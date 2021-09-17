@@ -7,32 +7,29 @@
     <title>Title</title>
 </head>
 <body>
+<%--Cliente(cpf, telefone, sexo, nascimento)--%>
 <form action="" method="${requestScope.get("formMethod") == null ?"post":requestScope.get("formMethod")}">
-    <label for="codigo">CPF/CNPJ:</label><br>
+    <label for="cpf">CPF:</label><br>
     <input <%= request.getAttribute("formMethod") != "post"? "disabled":"" %>
-            type="text" id="codigo" name="codigo" value=
-            "${(requestScope.usuario == null || requestScope.formMethod == "post"?"":requestScope.usuario.codigo)}"><br>
-    <label for="email">E-mail:</label><br>
+            type="text" id="cpf" name="cpf" value=
+            "${(requestScope.cliente == null || requestScope.formMethod == "post"?"":requestScope.cliente.cpf)}"><br>
+    <label for="telefone">telefone:</label><br>
 
     <input <%= request.getAttribute("formMethod") == "delete"? "disabled":"" %>
-            type="email" id="email" name="email" value=
-            "${(requestScope.usuario == null || requestScope.formMethod == "post"?"":requestScope.usuario.email)}"><br>
-    <label for="nome">Nome:</label><br>
+            type="telefone" id="telefone" name="telefone" value=
+            "${(requestScope.cliente == null || requestScope.formMethod == "post"?"":requestScope.cliente.telefone)}"><br>
+    <label for="sexo">Nome:</label><br>
 
     <input <%= request.getAttribute("formMethod") == "delete"? "disabled":"" %>
-            type="text" id="nome" name="nome" value=
-            "${(requestScope.usuario == null || requestScope.formMethod == "post"?"":requestScope.usuario.senha)}"><br>
-    <label for="adm">É adm?:</label><br>
+            type="text" id="sexo" name="sexo" value=
+            "${(requestScope.cliente == null || requestScope.formMethod == "post"?"":requestScope.cliente.sexo)}"><br>
+    <label for="nascimento">Data de nascimento:</label><br>
 
     <input <%= request.getAttribute("formMethod") == "delete"? "disabled":"" %>
-            type="checkbox" id="adm" name="adm" ${requestScope.formMethod == "post" ||requestScope.usuario == null || requestScope.usuario.adm==false ? "" : "checked"}><br>
-    <label for="senha">Senha:</label><br>
-
-    <input <%= request.getAttribute("formMethod") == "delete"? "disabled":"" %>
-            type="text" id="senha" name="senha" value="${requestScope.formMethod == "post" || requestScope.usuario == null?"":requestScope.usuario.senha}"
+            type="date" id="nascimento" name="nascimento" value="${requestScope.formMethod == "post" ||requestScope.cliente == null ? "" : requestScope.cliente.nascimento}"><br>
 
     ><br>
-
+    <br>
     <input type="submit" value="Submit"><br>
 </form>
 </body>

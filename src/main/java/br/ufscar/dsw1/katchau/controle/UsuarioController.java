@@ -4,6 +4,7 @@ package br.ufscar.dsw1.katchau.controle;
 
 import br.ufscar.dsw1.katchau.dao.AuthDAO;
 import br.ufscar.dsw1.katchau.dao.UsuarioDAO;
+import br.ufscar.dsw1.katchau.entidade.Loja;
 import br.ufscar.dsw1.katchau.entidade.Usuario;
 
 import javax.servlet.RequestDispatcher;
@@ -15,7 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet(name = "Usuario", value = "/Usuario/*")
+@WebServlet(name = "Usuario", value = "/usuario/*")
 public class UsuarioController extends HttpServlet {
     private UsuarioDAO dao;
 
@@ -33,6 +34,14 @@ public class UsuarioController extends HttpServlet {
         Usuario user = dao.getAll().get(0);
         request.setAttribute("usuario", user);
         RequestDispatcher dispatcher = request.getRequestDispatcher("./logado/adm/formUsuario.jsp");
+        dispatcher.forward(request, response);
+    }
+
+    private void lista(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        List<Usuario> listaUsuarios = dao.getAll();
+        request.setAttribute("listaUsuarios", listaUsuarios);
+        System.out.println("Usuarios-->" + listaUsuarios.toString());
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/logado/listaUsuarios.jsp");
         dispatcher.forward(request, response);
     }
 }

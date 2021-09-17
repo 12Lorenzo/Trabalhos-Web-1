@@ -31,7 +31,7 @@ public class LojaController extends HttpServlet {
     private void lista(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         List<Loja> listaLojas = dao.read();
         request.setAttribute("listaLojas", listaLojas);
-        System.out.println("-->" + listaLojas.toString());
+        System.out.println("lojas-->" + listaLojas.toString());
         RequestDispatcher dispatcher = request.getRequestDispatcher("/logado/listaLoja.jsp");
         dispatcher.forward(request, response);
     }

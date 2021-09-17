@@ -55,10 +55,10 @@ public class Cliente {
     @Override
     public String toString() {
         return "Cliente{" +
-                "cpf='" + cpf + '\'' +
-                ", telefone='" + telefone + '\'' +
-                ", sexo='" + sexo + '\'' +
-                ", nascimento=" + nascimento +
-                '}';
+            "cpf='" + cpf + '\'' +
+            ", telefone='" + telefone + '\'' +
+            ", sexo='" + sexo + '\'' +
+            ", nascimento=" + nascimento +
+            '}';
     }
 }

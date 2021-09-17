@@ -19,14 +19,15 @@ import java.util.List;
 @WebServlet(urlPatterns = "/proposta/*")
 public class PropostaController extends HttpServlet {
 
-    private PropostaDAO dao;
 
     @Override
     public void init() {
+        cli = new ClienteDAO();
         dao = new PropostaDAO();
     }
 
-    ClienteDAO cli;
+    private ClienteDAO cli;
+    private PropostaDAO dao;
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -34,7 +35,7 @@ public class PropostaController extends HttpServlet {
     }
 
     private void lista(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        Cliente auxCli = cli.retornaCli("1");
+        Cliente auxCli = cli.retornaCli("000.000.001");
         System.out.println(auxCli);
         if(auxCli != null) {
             List<Proposta> listaPropostas = dao.read(auxCli); //Não esta funcionando

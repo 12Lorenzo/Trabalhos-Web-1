@@ -1,11 +1,8 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: loren
-  Date: 16/09/2021
-  Time: 11:31
-  To change this template use File | Settings | File Templates.
---%>
+
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page isELIgnored="false"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <html>
 <head>
     <title>Title</title>
@@ -23,17 +20,19 @@
         <td>carro_id</td>
         <td>condPag</td>
     </tr>
-    <c:forEach var="proposta" items="${listaProposta}">
+
+    <c:forEach var="proposta" items="${listaPropostas}">
 
         <td>
             <c:out value="${proposta.id}"/>
         </td>
             <td><c:out value="${proposta.status}"/></td>
             <td><c:out value="${proposta.data}"/></td>
-            <td><c:out value="${proposta.valor}"/></td>
+            <td><c:out value="${proposta.val}"/></td>
+            <td><c:out value="${proposta.cpf}"/></td>
             <td><c:out value="${proposta.cnpj}"/></td>
             <td><c:out value="${proposta.carro_id}"/></td>
-            <td><c:out value="${proposta.candPag}"/></td>
+            <td><c:out value="${proposta.condPag}"/></td>
 
         </tr>
     </c:forEach>

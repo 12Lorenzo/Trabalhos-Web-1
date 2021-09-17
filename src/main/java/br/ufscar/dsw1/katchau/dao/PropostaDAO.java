@@ -15,39 +15,17 @@ public class PropostaDAO extends GenericDAO {
 
     public List<Proposta> read(Cliente cliente) {
 
-        List<Proposta> listaPropostas = new ArrayList<>();
+        List<Proposta> listaPropostas;
 
-        String sql1 = "SELECT * from Proposta WHERE cnpj = ?";
+        String sql1 = "SELECT * from Proposta p WHERE p.cpf = ?";
         try {
             Connection conn = this.getConnection();
             ResultSet resultSet;
-//            if(lojaCnpj != null) {
-//                PreparedStatement statement = conn.prepareStatement(sql);
-//
-//                statement.setString(1, lojaCnpj);
-//                resultSet = statement.executeQuery();
-//                state ment.close();
-//            } else {
             PreparedStatement statement = conn.prepareStatement(sql1);
             statement.setString(1, cliente.getCpf());
             resultSet = statement.executeQuery();
+            listaPropostas = getFromResult(resultSet);
 
-//            }
-            while (resultSet.next()) {
-                Long id = resultSet.getLong("id");
-                String cnpj = resultSet.getString("cnpj");
-                String condPag = resultSet.getString("condPag");
-                int status = resultSet.getInt("status");
-                String descricao = resultSet.getString("descricao");
-                Long carro_id = resultSet.getLong("carro_id");
-                float val = resultSet.getFloat("val");
-                Date data = resultSet.getDate("data");
-
-                Proposta proposta = new Proposta(id, status, data, val, cnpj, carro_id, condPag);
-
-                listaPropostas.add(proposta);
-            }
-//
             resultSet.close();
             statement.close();
             conn.close();
@@ -58,4 +36,48 @@ public class PropostaDAO extends GenericDAO {
         return listaPropostas;
     }
 
+    public List<Proposta> getAll() {
+
+        List<Proposta> listaPropostas;
+
+        String sql1 = "SELECT * from Proposta";
+        try {
+            Connection conn = this.getConnection();
+            ResultSet resultSet;
+            PreparedStatement statement = conn.prepareStatement(sql1);
+            resultSet = statement.executeQuery();
+            listaPropostas = getFromResult(resultSet);
+            resultSet.close();
+            statement.close();
+            conn.close();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+        return listaPropostas;
+    }
+
+    private List<Proposta> getFromResult(ResultSet resultSet){
+        List<Proposta> listaPropostas = new ArrayList<>();
+        try {
+            while (resultSet.next()) {
+                Long id = resultSet.getLong("id");
+                String cnpj = resultSet.getString("cnpj");
+                String cpf = resultSet.getString("cpf");
+                String condPag = resultSet.getString("condPag");
+                int status = resultSet.getInt("status");
+                Long carro_id = resultSet.getLong("carro_id");
+                float val = resultSet.getFloat("val");
+                Date data = resultSet.getDate("data");
+
+                Proposta proposta = new Proposta(id, status, data, val, cnpj, carro_id, condPag, cpf);
+
+                listaPropostas.add(proposta);
+
+            }
+        }catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return listaPropostas;
+    }
 }

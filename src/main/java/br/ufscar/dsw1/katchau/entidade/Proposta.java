@@ -10,6 +10,16 @@ public class Proposta {
     private Date data;
     private float val;
     private String cnpj;
+    private String cpf;
+
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
+    }
+
+    public String getCpf() {
+        return cpf;
+    }
+
     private Long carro_id;
     private String condPag;
 
@@ -70,9 +80,10 @@ public class Proposta {
         return condPag;
     }
 
-    public Proposta(Long id,int status,Date data,float val,String cnpj,Long carro_id, String condPag){
+    public Proposta(Long id,int status,Date data,float val,String cnpj,Long carro_id, String condPag, String cpf){
         super();
         this.id = id;
+        this.cpf = cpf;
         this.status = status;
         this.data = data;
         this.val = val;
@@ -80,12 +91,13 @@ public class Proposta {
         this.carro_id = carro_id;
         this.condPag = condPag;
     }
-    public Proposta(int status,Date data,float val,String cnpj,Long carro_id){
+    public Proposta(int status,Date data,float val,String cnpj,Long carro_id, String cpf){
         super();
         this.status = status;
         this.data = data;
         this.val = val;
         this.cnpj = cnpj;
+        this.cpf = cpf;
         this.carro_id = carro_id;
     }
     public Proposta(Long id){

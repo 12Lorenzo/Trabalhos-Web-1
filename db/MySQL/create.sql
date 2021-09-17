@@ -56,8 +56,10 @@ create table Proposta
     val      float,
     condPag  text,
     cnpj     varchar(20) not null,
+    cpf     varchar(20) not null,
     carro_id bigint      not null,
     primary key (id),
+    foreign key (cpf) references Cliente (cpf),
     foreign key (carro_id) references Carro (id),
     foreign key (cnpj) references Carro (cnpj) ON DELETE CASCADE
 );
@@ -87,3 +89,4 @@ insert into Cliente(cpf, telefone, sexo, nascimento) VALUES ('000.000.002', '992
 insert into Carro(cnpj, placa, modelo, chassi, ano, km, descricao, valor) values ('000.000.000/0001-01','00001','carroa','none',1080,0,'carro antigo',2);
 insert into Carro(cnpj, placa, modelo, chassi, ano, km, descricao, valor) values ('000.000.000/0001-02','00002','carrob','none',1081,1,'carro antigo 2',3);
 
+insert into Proposta(status, data, val, condPag, cnpj, cpf, carro_id) VALUES (1, '2001-02-22', 3, 'horrivel', '000.000.000/0001-02','000.000.001',2);
