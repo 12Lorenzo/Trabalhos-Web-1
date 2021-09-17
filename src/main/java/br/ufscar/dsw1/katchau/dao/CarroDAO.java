@@ -53,6 +53,29 @@ public class CarroDAO extends GenericDAO{
         return listaCarros;
     }
 
+    public Carro read(Long carroId){
+        List<Carro> listaCarros;
+
+        String sql1 = "SELECT * from Carro c where c.id = ?";
+        try {
+            Connection conn = this.getConnection();
+            ResultSet resultSet;
+            PreparedStatement statement = conn.prepareStatement(sql1);
+            statement.setLong(1,carroId);
+            resultSet = statement.executeQuery();
+            listaCarros = getFromResult(resultSet);
+            resultSet.close();
+            statement.close();
+            conn.close();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        if(listaCarros.size() == 0){
+          return null;
+        }
+        return listaCarros.get(0);
+    }
+
     private List<Carro> getFromResult(ResultSet resultSet){
         List<Carro> listaCarros = new ArrayList<>();
         try{

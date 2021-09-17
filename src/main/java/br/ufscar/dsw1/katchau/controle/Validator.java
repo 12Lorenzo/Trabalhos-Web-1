@@ -21,14 +21,15 @@ public class Validator extends HttpServlet {
     }
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        doPost(request,response);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("./login.jsp");
+        dispatcher.forward(request, response);
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String email = request.getParameter("email");
         String password = request.getParameter("password");
-        Usuario result = password != null && email != null ?dao.validate(email, password): null;
+        Usuario result = password != null && email != null ? dao.validate(email, password): null;
 
         if(result != null){
             request.setAttribute("erro", "bem vindo " + result.getNome());

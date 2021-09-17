@@ -16,7 +16,9 @@
 <head>
     <title>Title</title>
 </head>
-<body>
+<body><br>
+<a href="./Validator">Login</a>
+<br>
 <table border="1">
     <tr>
 
