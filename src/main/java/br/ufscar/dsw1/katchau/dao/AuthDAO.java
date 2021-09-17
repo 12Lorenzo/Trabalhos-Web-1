@@ -11,7 +11,7 @@ public class AuthDAO extends  GenericDAO{
     public Usuario validate(String email, String senha) {
         String sql = "SELECT * from Usuario u where u.email = ?";
         String vSenha, codigo, nome;
-        Boolean adm;
+        int papel;
         if(email == null || senha == null)
             return null;
         try {
@@ -25,7 +25,7 @@ public class AuthDAO extends  GenericDAO{
                 vSenha = resultSet.getString("senha");
                 codigo = resultSet.getString("codigo");
                 nome = resultSet.getString("nome");
-                adm = resultSet.getBoolean("adm");
+                papel = resultSet.getInt("papel");
 
             }else {
                 return null;
@@ -34,7 +34,7 @@ public class AuthDAO extends  GenericDAO{
             statement.close();
             conn.close();
             if(vSenha != null && codigo != null && vSenha.equals(convert(senha))){
-                return new Usuario(codigo,email,senha,adm,nome);
+                return new Usuario(codigo,email,senha,papel,nome);
             }else {
                 return null;
             }

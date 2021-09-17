@@ -42,7 +42,7 @@ public class PropostaController extends HttpServlet {
             request.setAttribute("listaPropostas", listaPropostas);
             System.out.println("-->" + listaPropostas.toString());
         }
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/logado/listaProposta.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/logado/listas/listaProposta.jsp");
         dispatcher.forward(request, response);
 
 

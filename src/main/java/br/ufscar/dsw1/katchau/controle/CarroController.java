@@ -35,7 +35,7 @@ public class CarroController extends HttpServlet {
         List<Carro> listaCarros = dao.getAll();
         request.setAttribute("listaCarros", listaCarros);
         System.out.println("-->" + listaCarros.toString());
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/logado/carro/lista.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/logado/listas/listaCarros.jsp");
         dispatcher.forward(request, response);
     }
 }

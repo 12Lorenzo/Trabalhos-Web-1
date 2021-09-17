@@ -6,7 +6,7 @@ public class Usuario {
     private String codigo;
     private String email;
     private String senha;
-    private Boolean adm;
+    private int papel;
     private String nome;
 
     public String getCodigo() {
@@ -33,13 +33,13 @@ public class Usuario {
             (String senha) {
         this.senha = senha;
     }
-    public Boolean getAdm() {
-        return adm;
+    public int getPapel() {
+        return papel;
     }
 
-    public void setAdm
-            (Boolean adm) {
-        this.adm = adm;
+    public void setPapel
+            (int papel) {
+        this.papel = papel;
     }
     public String getNome() {
         return nome;
@@ -49,12 +49,12 @@ public class Usuario {
             (String nome) {
         this.nome = nome;
     }
-    public Usuario(String codigo,String email,String senha,Boolean adm,String nome){
+    public Usuario(String codigo,String email,String senha,int papel,String nome){
         super();
         this.codigo = codigo;
         this.email = email;
         this.senha = senha;
-        this.adm = adm;
+        this.papel = papel;
         this.nome = nome;
     }
 

@@ -41,7 +41,7 @@ public class UsuarioController extends HttpServlet {
         List<Usuario> listaUsuarios = dao.getAll();
         request.setAttribute("listaUsuarios", listaUsuarios);
         System.out.println("Usuarios-->" + listaUsuarios.toString());
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/logado/listaUsuarios.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/logado/listas/listaUsuarios.jsp");
         dispatcher.forward(request, response);
     }
 }

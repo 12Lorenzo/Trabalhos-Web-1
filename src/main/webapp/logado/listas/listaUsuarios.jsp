@@ -15,7 +15,7 @@
         <td>codigo</td>
         <td>email</td>
         <td>senha</td>
-        <td>adm</td>
+        <td>papel</td>
         <td>nome</td>
     </tr>
 
@@ -26,7 +26,7 @@
         </td>
         <td><c:out value="${usuario.email}"/></td>
         <td><c:out value="${usuario.senha}"/></td>
-        <td><c:out value="${usuario.adm}"/></td>
+        <td><c:out value="${usuario.papel}"/></td>
         <td><c:out value="${usuario.nome}"/></td>
 
         </tr>

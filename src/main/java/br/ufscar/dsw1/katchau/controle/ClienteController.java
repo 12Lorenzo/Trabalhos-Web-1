@@ -32,7 +32,7 @@ public class ClienteController extends HttpServlet {
         List<Cliente> listaClientes = dao.read();
         request.setAttribute("listaClientes", listaClientes);
         System.out.println("-->" + listaClientes.toString());
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/logado/listaCliente.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/logado/listas/listaCliente.jsp");
         dispatcher.forward(request, response);
     }
 }

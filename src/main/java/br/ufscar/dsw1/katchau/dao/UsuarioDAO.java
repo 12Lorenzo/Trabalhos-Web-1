@@ -28,8 +28,8 @@ public class UsuarioDAO extends GenericDAO{
                 String email = resultSet.getString("email");
                 String senha = resultSet.getString("senha");
                 String nome = resultSet.getString("nome");
-                Boolean adm = resultSet.getBoolean("adm");
-                Usuario user = new Usuario(codigo,email,senha,adm,nome);
+                int papel = resultSet.getInt("papel");
+                Usuario user = new Usuario(codigo,email,senha,papel,nome);
 
                 listaUsuarios.add(user);
             }

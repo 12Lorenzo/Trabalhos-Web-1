@@ -30,14 +30,19 @@ public class Validator extends HttpServlet {
         String password = request.getParameter("password");
         Usuario result = password != null && email != null ?dao.validate(email, password): null;
 
-        System.out.println("não é isso ai");
         if(result != null){
             request.setAttribute("erro", "bem vindo " + result.getNome());
             request.getSession().setAttribute("user", result);
-            RequestDispatcher dispatcher = request.getRequestDispatcher("./login.jsp");
+            RequestDispatcher dispatcher;
+            if(result.getPapel() == 1){
+                dispatcher = request.getRequestDispatcher("./adm");
+            }
+            else{
+                dispatcher = request.getRequestDispatcher("./login.jsp");
+            }
             dispatcher.forward(request, response);
         } else{
-            request.setAttribute("erro", "tem erro");
+            request.setAttribute("erro", "E-mail ou senha incorretos");
             RequestDispatcher dispatcher = request.getRequestDispatcher("./login.jsp");
             dispatcher.forward(request, response);
         }

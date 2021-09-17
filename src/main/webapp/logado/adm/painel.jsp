@@ -6,6 +6,8 @@
 <head>
     <title>Title</title>
 </head>
+<body>
+
 <h1>Lista de Usuários</h1>
 
 <table border="1">
@@ -15,21 +17,36 @@
         <td>codigo</td>
         <td>email</td>
         <td>senha</td>
-        <td>adm</td>
+        <td>papel</td>
         <td>nome</td>
     </tr>
 
-    <c:forEach var="usuario" items="${listaUsuarios}">
+    <c:forEach var="usuario" items="${listaUsuarios}" varStatus="loop">
 
         <td>
             <c:out value="${usuario.codigo}"/>
         </td>
         <td><c:out value="${usuario.email}"/></td>
         <td><c:out value="${usuario.senha}"/></td>
-        <td><c:out value="${usuario.adm}"/></td>
+        <td><c:out value="${usuario.papel}"/></td>
         <td><c:out value="${usuario.nome}"/></td>
+<%--        <td><form action='./edit/?object=usuario&id=${loop.index}'><input type='submit' value="editar" /></form></td>--%>
+<%--        <td><a href="./edit/?object=usuario&codigo=${usuario.codigo}&email=${usuario.email}&senha=${usuario.senha}&papel=${usuario.papel}&nome=${usuario.nome}">aaaa</a>--%>
+        <td>
+            <form action="./logado/adm/formUsuario.jsp" method="post">
+                <input type="hidden" name="codigo" value="${usuario.codigo}">
+                <input type="hidden" name="nome" value="${usuario.nome}">
+                <input type="hidden" name="email" value="${usuario.email}">
+                <input type="hidden" name="papel" value="${usuario.papel}">
+                <input type="submit" name="submit" value="editar">
 
-        </tr>
+            </form>
+        </td>
+
+
+
+        </td>
+            </tr>
     </c:forEach>
 
 </table>

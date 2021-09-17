@@ -12,7 +12,7 @@ create table Usuario
     codigo varchar(20)  not null,
     email  varchar(256) not null unique,
     senha  varchar(256) not null,
-    adm    bit          not null,
+    papel    integer      not null,
     nome   varchar(256) not null,
     primary key (codigo)
 );
@@ -64,24 +64,24 @@ create table Proposta
     foreign key (cnpj) references Carro (cnpj) ON DELETE CASCADE
 );
 
-insert into Usuario(codigo, email, senha, nome, adm)
+insert into Usuario(codigo, email, senha, nome, papel)
 values ('000.000.000-00', 'ok@ok.com', 'ok', 'ok', 1);
 
-insert into Usuario(codigo, email, senha, nome, adm)
-values ('000.000.000/0001-01', 'loja@loja.com', 'loja', 'loja', 0);
+insert into Usuario(codigo, email, senha, nome, papel)
+values ('000.000.000/0001-01', 'loja@loja.com', 'loja', 'loja', 2);
 
-insert into Usuario(codigo, email, senha, nome, adm)
-values ('000.000.000/0001-02', 'loja2@loja.com', 'loja2', 'loja2', 0);
+insert into Usuario(codigo, email, senha, nome, papel)
+values ('000.000.000/0001-02', 'loja2@loja.com', 'loja2', 'loja2', 2);
 
 insert into Loja(cnpj, descricao) values ('000.000.000/0001-01', 'loja 1');
 
 insert into Loja(cnpj, descricao) values ('000.000.000/0001-02', 'loja 2');
 
-insert into Usuario(codigo, email, senha, nome, adm)
-values ('000.000.001', 'cliente@cliente.com', 'cliente', 'cliente', 0);
+insert into Usuario(codigo, email, senha, nome, papel)
+values ('000.000.001', 'cliente@cliente.com', 'cliente', 'cliente', 3);
 
-insert into Usuario(codigo, email, senha, nome, adm)
-values ('000.000.002', 'cliente2@cliente.com', 'cliente2', 'cliente2', 0);
+insert into Usuario(codigo, email, senha, nome, papel)
+values ('000.000.002', 'cliente2@cliente.com', 'cliente2', 'cliente2', 3);
 
 insert into Cliente(cpf, telefone, sexo, nascimento) VALUES ('000.000.001', '999999999', 'm','2001-03-01');
 insert into Cliente(cpf, telefone, sexo, nascimento) VALUES ('000.000.002', '992999999', 'f','2002-03-01');
