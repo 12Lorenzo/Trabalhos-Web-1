@@ -55,7 +55,8 @@ public class CarroDAO extends GenericDAO{
 
     public Carro read(Long carroId){
         List<Carro> listaCarros;
-
+        if (carroId == null)
+            return null;
         String sql1 = "SELECT * from Carro c where c.id = ?";
         try {
             Connection conn = this.getConnection();

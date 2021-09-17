@@ -31,7 +31,7 @@ public class CarroController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Usuario currentUser = (Usuario) request.getSession().getAttribute("user");
         if(currentUser != null && currentUser.getPapel() == 1) {
-            Long codigo =  Long.valueOf(request.getParameter("id"));
+            Long codigo = request.getParameter("id")==null?null:Long.valueOf(request.getParameter("id"));
             Carro carro = dao.read(codigo);
             String method = request.getParameter("method") == null? "post" : request.getParameter("method");
             if (carro != null) {
