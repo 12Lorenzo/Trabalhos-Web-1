@@ -38,6 +38,13 @@ public class AdmController extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        Usuario user = (Usuario) request.getSession().getAttribute("user");
+        if (user == null || user.getPapel() != 1){
+            request.setAttribute("erro", "você não é adm, logue novamente");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/login.jsp");
+            dispatcher.forward(request, response);
+        }
+
         String action = request.getPathInfo();
         if (action == null) {
             action = "";
