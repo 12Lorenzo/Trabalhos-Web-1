@@ -1,0 +1,10 @@
+.tabela{
+    max-width: 1000px;
+    min-width: 20px;
+}
+
+.celTb{
+    background-color: black;
+    font-family: "Times New Roman";
+    width: 80px;
+}
