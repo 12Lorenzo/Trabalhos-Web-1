@@ -10,6 +10,8 @@
 
 <h1>Lista de Usuários</h1>
 
+<a href="./usuario/?method=post">adicionar novo</a>
+
 <table border="1">
     <tr>
 
@@ -30,17 +32,11 @@
         <td><c:out value="${usuario.senha}"/></td>
         <td><c:out value="${usuario.papel}"/></td>
         <td><c:out value="${usuario.nome}"/></td>
-<%--        <td><form action='./edit/?object=usuario&id=${loop.index}'><input type='submit' value="editar" /></form></td>--%>
-<%--        <td><a href="./edit/?object=usuario&codigo=${usuario.codigo}&email=${usuario.email}&senha=${usuario.senha}&papel=${usuario.papel}&nome=${usuario.nome}">aaaa</a>--%>
-        <td>
-            <form action="./logado/adm/formUsuario.jsp" method="post">
-                <input type="hidden" name="codigo" value="${usuario.codigo}">
-                <input type="hidden" name="nome" value="${usuario.nome}">
-                <input type="hidden" name="email" value="${usuario.email}">
-                <input type="hidden" name="papel" value="${usuario.papel}">
-                <input type="submit" name="submit" value="editar">
 
-            </form>
+        <td> <a href="./usuario/?codigo=${usuario.codigo}&method=update">editar</a>
+        </td>
+
+        <td> <a href="./usuario/?codigo=${usuario.codigo}&method=delete">deletar</a>
         </td>
 
 
@@ -102,6 +98,8 @@
 </table>
 
 <h1>Lista de Carros</h1>
+<br>
+<a href="./carros/?method=post">adicionar novo</a><br>
 <table border="1">
     <tr>
 
@@ -129,7 +127,11 @@
         <td><c:out value="${carro.ano}"/></td>
         <td><c:out value="${carro.km}"/></td>
         <td><c:out value="${carro.valor}"/></td>
+        <td> <a href="./carros/?id=${carro.id}&method=update">editar</a>
+        </td>
 
+        <td> <a href="./carros/?id=${carro.id}&method=delete">deletar</a>
+        </td>
         </tr>
     </c:forEach>
 

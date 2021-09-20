@@ -112,6 +112,7 @@ public class Carro {
 
     @Override
     public String toString() {
-        return this.modelo+" "+this.cnpj;
+        return this.modelo+"<>"+this.cnpj+"<>"+this.placa+"<>"+this.modelo+"<>"+this.chassi+"<>"+this.descricao+
+        "<>"+this.ano+"<>"+this.km+"<>"+ this.valor;
     }
 }

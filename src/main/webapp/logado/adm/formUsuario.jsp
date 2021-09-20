@@ -9,33 +9,34 @@
 <body>
 
 <p>
-    <%= request.getParameter("nome")%>
-    <%= request.getParameter("email")%>
+<%--    <%= request.getParameter("nome")%>--%>
+<%--    <%= request.getParameter("email")%>--%>
+<%--    <%= request.getAttribute("formMethod")%>--%>
 
 </p>
-
-<form action="" method="${requestScope.get("formMethod") == null ?"post":requestScope.get("formMethod")}">
+<%--<%= request.setAttribute("formMethod", (request.getAttribute("formMethod") == null? "post": request.getAttribute("formMethod"))) %>--%>
+<form action="" method="${requestScope.formMethod}">
     <label for="codigo">CPF/CNPJ:</label><br>
-    <input <%= request.getAttribute("formMethod") != "post" && request.getAttribute("formMethod")  != null? "disabled":"" %>
+    <input ${requestScope.formMethod == "post"? "":"disabled"}
             type="text" id="codigo" name="codigo" value=
             "${(requestScope.usuario == null || requestScope.formMethod == "post"?"":requestScope.usuario.codigo)}"><br>
-    <label for="email">E-mail:</label><br>
 
-    <input <%= request.getAttribute("formMethod") == "delete"? "disabled":"" %>
+    <label for="email">E-mail:</label><br>
+    <input ${requestScope.formMethod == "delete" ? "disabled":""}
             type="email" id="email" name="email" value=
             "${(requestScope.usuario == null || requestScope.formMethod == "post"?"":requestScope.usuario.email)}"><br>
-    <label for="nome">Nome:</label><br>
 
-    <input <%= request.getAttribute("formMethod") == "delete"? "disabled":"" %>
+    <label for="nome">Nome:</label><br>
+    <input ${requestScope.formMethod == "delete" ? "disabled":""}
             type="text" id="nome" name="nome" value=
             "${(requestScope.usuario == null || requestScope.formMethod == "post"?"":requestScope.usuario.senha)}"><br>
-<%--    <label for="adm">É adm?:</label><br>--%>
 
-<%--    <input <%= request.getAttribute("formMethod") == "delete"? "disabled":"" %>--%>
-<%--            type="checkbox" id="adm" name="adm" ${requestScope.formMethod == "post" ||requestScope.usuario == null || requestScope.usuario.adm==false ? "" : "checked"}><br>--%>
+    <label for="papel">Papel:</label><br>
+    <input ${requestScope.formMethod == "delete" ? "disabled":""}
+            type="number" min=0 max=3 id="papel" name="papel" value="${requestScope.usuario == null ?"" :requestScope.usuario.papel}"><br>
+
     <label for="senha">Senha:</label><br>
-
-    <input <%= request.getAttribute("formMethod") == "delete"? "disabled":"" %>
+    <input ${requestScope.formMethod == "delete" ? "disabled":""}
             type="text" id="senha" name="senha" value="${requestScope.formMethod == "post" || requestScope.usuario == null?"":requestScope.usuario.senha}"
 
     ><br>
