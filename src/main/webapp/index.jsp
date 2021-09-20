@@ -12,12 +12,12 @@
 <body>
 <br />
 <jsp:useBean id='bean' class='br.ufscar.dsw1.katchau.bean.BuscaPorModeloBean' />
-<a href="./Validator">Login</a>
+
 <form name='form'>
     <div align="center">
         <p>Lista de Carros</p>
         <label for="carro">Modelo</label> <input id="carro" name="carro"
-                                                onkeyUp="getCarros()">
+                                                 onkeyUp="getCarros()">
         <div id="carros">
 
             <p>Quantidade: ${fn:length(bean.carros)}</p>
