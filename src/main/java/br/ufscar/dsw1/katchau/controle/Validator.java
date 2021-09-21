@@ -2,7 +2,9 @@ package br.ufscar.dsw1.katchau.controle;
 
 import br.ufscar.dsw1.katchau.dao.AuthDAO;
 import br.ufscar.dsw1.katchau.dao.CarroDAO;
+import br.ufscar.dsw1.katchau.dao.LojaDAO;
 import br.ufscar.dsw1.katchau.entidade.Carro;
+import br.ufscar.dsw1.katchau.entidade.Loja;
 import br.ufscar.dsw1.katchau.entidade.Usuario;
 
 import javax.servlet.*;
@@ -14,10 +16,12 @@ import java.util.List;
 @WebServlet(name = "Validator", value = "/Validator")
 public class Validator extends HttpServlet {
     private AuthDAO dao;
+    private LojaDAO lojaDAO;
 
     @Override
     public void init() {
         dao = new AuthDAO();
+        lojaDAO = new LojaDAO();
     }
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -38,7 +42,11 @@ public class Validator extends HttpServlet {
             if(result.getPapel() == 1){
                 dispatcher = request.getRequestDispatcher("./adm");
             }
-            else{
+            else if (result.getPapel() == 2){
+                Loja loja = (Loja) lojaDAO.read(result.getCodigo());
+                request.getSession().setAttribute("loja", loja);
+                dispatcher = request.getRequestDispatcher("/painel");
+            }else {
                 dispatcher = request.getRequestDispatcher("./login.jsp");
             }
             dispatcher.forward(request, response);

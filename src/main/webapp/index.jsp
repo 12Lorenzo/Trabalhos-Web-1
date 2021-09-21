@@ -6,13 +6,13 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>AJAX (dynamic table)</title>
+    <title>Katchau</title>
     <script src="js/ListaCarrosAJAX.js"></script>
 </head>
 <body>
 <br />
 <jsp:useBean id='bean' class='br.ufscar.dsw1.katchau.bean.BuscaPorModeloBean' />
-
+<a href="./Validator">Login</a>
 <form name='form'>
     <div align="center">
         <p>Lista de Carros</p>
