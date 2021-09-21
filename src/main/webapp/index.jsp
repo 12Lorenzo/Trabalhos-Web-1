@@ -24,17 +24,24 @@
             <table border="1" style="width: 400px; border: 1px solid black">
 
                 <tr>
-                    <th style="width: 10%; text-align: center"></th>
                     <th style="width: 70%;">Modelo</th>
+                    <th style="width: 70%;">Placa</th>
+                    <th style="width: 70%;">Chassi</th>
+                    <th style="width: 70%;">Descricao</th>
                     <th style="width: 20%; text-align: center">Ano</th>
+                    <th style="width: 70%;">Km</th>
+                    <th style="width: 70%;">Valor</th>
                 </tr>
                 <c:forEach var="carro" items="${bean.carros}">
                     <tr>
-                        <td style="text-align: center">
-                        </td>
 
                         <td style="text-align: center">${carro.modelo}</td>
-                        <td>${carro.ano}</td>
+                        <td style="text-align: center">${carro.placa}</td>
+                        <td style="text-align: center">${carro.chassi}</td>
+                        <td style="text-align: center">${carro.descricao}</td>
+                        <td style="text-align: center">${carro.ano}</td>
+                        <td style="text-align: center">${carro.km}</td>
+                        <td style="text-align: center">${carro.valor}</td>
                     </tr>
                 </c:forEach>
             </table>
