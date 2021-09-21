@@ -39,15 +39,11 @@
         <td> <a href="./usuario/?codigo=${usuario.codigo}&method=delete">deletar</a>
         </td>
 
-
-
         </td>
             </tr>
     </c:forEach>
 
 </table>
-
-
 
 
 <h1>Lista de Clientes</h1><br>
@@ -164,6 +160,8 @@
         <td><c:out value="${proposta.cnpj}"/></td>
         <td><c:out value="${proposta.carro_id}"/></td>
         <td><c:out value="${proposta.condPag}"/></td>
+        <td> <a href="./proposta/?id=${proposta.id}&method=update">Dar Proposta</a>
+        </td>
 
         </tr>
     </c:forEach>

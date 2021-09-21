@@ -12,7 +12,7 @@ create table Usuario
     codigo varchar(20)  not null,
     email  varchar(256) not null unique,
     senha  varchar(256) not null,
-    papel    integer      not null,
+    papel  integer      not null,
     nome   varchar(256) not null,
     primary key (codigo)
 );
