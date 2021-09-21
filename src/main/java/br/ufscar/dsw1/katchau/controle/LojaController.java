@@ -4,6 +4,7 @@ package br.ufscar.dsw1.katchau.controle;
 
 import br.ufscar.dsw1.katchau.dao.LojaDAO;
 import br.ufscar.dsw1.katchau.entidade.Loja;
+import br.ufscar.dsw1.katchau.entidade.Usuario;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -14,6 +15,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
+
+// Será utilizado para fazer o crud da loja
 @WebServlet(urlPatterns = "/loja/*")
 public class LojaController extends HttpServlet {
     private LojaDAO dao;

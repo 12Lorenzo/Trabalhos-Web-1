@@ -57,6 +57,30 @@ public class PropostaDAO extends GenericDAO {
         return listaPropostas;
     }
 
+    public List<Proposta> getAll(String cnpj) {
+        if (cnpj == null)
+            return getAll();
+
+        List<Proposta> listaPropostas;
+
+        String sql1 = "SELECT * from Proposta p where p.cnpj = ?";
+        try {
+            Connection conn = this.getConnection();
+            ResultSet resultSet;
+            PreparedStatement statement = conn.prepareStatement(sql1);
+            statement.setString(1,cnpj);
+            resultSet = statement.executeQuery();
+            listaPropostas = getFromResult(resultSet);
+            resultSet.close();
+            statement.close();
+            conn.close();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+        return listaPropostas;
+    }
+
     private List<Proposta> getFromResult(ResultSet resultSet){
         List<Proposta> listaPropostas = new ArrayList<>();
         try {
