@@ -16,6 +16,7 @@
         <td>status</td>
         <td>data</td>
         <td>valor</td>
+        <td>cpf</td>
         <td>cnpj</td>
         <td>carro_id</td>
         <td>condPag</td>

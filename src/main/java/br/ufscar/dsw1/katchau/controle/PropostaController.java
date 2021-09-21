@@ -6,6 +6,7 @@ import br.ufscar.dsw1.katchau.dao.ClienteDAO;
 import br.ufscar.dsw1.katchau.dao.PropostaDAO;
 import br.ufscar.dsw1.katchau.entidade.Cliente;
 import br.ufscar.dsw1.katchau.entidade.Proposta;
+import br.ufscar.dsw1.katchau.entidade.Usuario;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -31,7 +32,7 @@ public class PropostaController extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        lista(request, response);
+        form(request, response);
     }
 
     private void lista(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -45,8 +46,14 @@ public class PropostaController extends HttpServlet {
         RequestDispatcher dispatcher = request.getRequestDispatcher("/logado/listas/listaProposta.jsp");
         dispatcher.forward(request, response);
 
-
-
     }
 
+
+    protected void form(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.setAttribute("formMethod", "post");
+        Proposta prop = dao.getAll().get(0);
+        request.setAttribute("proposta", prop);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/logado/adm/formProposta.jsp");
+        dispatcher.forward(request, response);
+    }
 }
