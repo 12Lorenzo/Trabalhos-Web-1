@@ -88,5 +88,10 @@ insert into Cliente(cpf, telefone, sexo, nascimento) VALUES ('000.000.002', '992
 
 insert into Carro(cnpj, placa, modelo, chassi, ano, km, descricao, valor) values ('000.000.000/0001-01','00001','carroa','none',1080,0,'carro antigo',2);
 insert into Carro(cnpj, placa, modelo, chassi, ano, km, descricao, valor) values ('000.000.000/0001-02','00002','carrob','none',1081,1,'carro antigo 2',3);
+insert into Carro(cnpj, placa, modelo, chassi, ano, km, descricao, valor) values ('000.000.000/0001-02','00003','fusca','aço inox',1082,0,'fusca',4);
 
 insert into Proposta(status, data, val, condPag, cnpj, cpf, carro_id) VALUES (1, '2001-02-22', 3, 'horrivel', '000.000.000/0001-02','000.000.001',2);
+insert into Proposta(status, data, val, condPag, cnpj, cpf, carro_id) VALUES (0, '2001-02-22', 3, 'condicao boa', '000.000.000/0001-02','000.000.001',2);
+
+insert into Proposta(status, data, val, condPag, cnpj, cpf, carro_id) VALUES (1, '2001-02-22', 30, 'fusca', '000.000.000/0001-02','000.000.001',3);
+insert into Proposta(status, data, val, condPag, cnpj, cpf, carro_id) VALUES (0, '2001-02-22', 30, 'eu quero o fusca, 30 no dinheiro', '000.000.000/0001-02','000.000.001',3);

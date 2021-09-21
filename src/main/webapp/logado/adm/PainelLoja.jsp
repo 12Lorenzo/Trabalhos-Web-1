@@ -26,13 +26,13 @@
     <c:forEach var="proposta" items="${ListaPropostas.stream().filter(p -> p.status == 0 && p.carro_id == carro.id).toList()}">
         <table border="1" style="width: 400px; border: 1px solid black">
             <tr>
-        <td>
-            <c:out value="${proposta.id}"/>
-        </td>
-        <td><c:out value="${proposta.status}"/></td>
-        <td><c:out value="${proposta.data}"/></td>
-        <td><c:out value="${proposta.val}"/></td>
-        <td><c:out value="${proposta.condPag}"/></td>
+                <td>
+                    <c:out value="${proposta.id}"/>
+                </td>
+                <td><c:out value="${proposta.status == 1 ? 'Aceito' : proposta.status == 0 ? 'Aberto' : 'Não Aceito'  }"/></td>
+                <td><c:out value="${proposta.data}"/></td>
+                <td><c:out value="${proposta.val}"/></td>
+                <td><c:out value="${proposta.condPag}"/></td>
             </tr>
         </table>
     </c:forEach>
