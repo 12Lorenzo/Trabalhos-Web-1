@@ -1,4 +1,11 @@
 package br.ufscar.dsw1.katchau.entidade;
+
+//import javax.faces.context.ExternalContext;
+import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
 //É a representação da entidade do banco como uma classe
 public class Carro {
     private Long id;
@@ -109,6 +116,21 @@ public class Carro {
             (float valor) {
         this.valor = valor;
     }
+
+    public static List<String> getImages(String uploadPath){
+        System.out.println("cheguei -:> " + uploadPath);
+        List<String> fileList = new ArrayList<String>();
+        File dir = new File(uploadPath);
+
+        File[] files = dir.listFiles();
+        if (files != null) {
+            for (final File file : files) {
+                fileList.add(file.getPath());
+            }
+        }
+        return fileList;
+    }
+
 
     @Override
     public String toString() {

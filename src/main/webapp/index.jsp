@@ -12,6 +12,7 @@
 <body>
 <br />
 <jsp:useBean id='bean' class='br.ufscar.dsw1.katchau.bean.BuscaPorModeloBean' />
+<%=request.getSession().getAttribute("message")%>
 <a href="./Validator">Login</a>
 <form name='form'>
     <div align="center">

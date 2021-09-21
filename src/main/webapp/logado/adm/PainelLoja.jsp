@@ -1,3 +1,4 @@
+<%@ page import="static br.ufscar.dsw1.katchau.Constants.UPLOAD_DIRECTORY" %>
 <%@ page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ page isELIgnored="false"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
@@ -50,6 +51,11 @@
             </tr>
         </table>
     </c:forEach>
+
+    <c:forEach var="carro_img" items="${carro.getImages(pageContext.servletContext.getRealPath('upload'))}" varStatus="loop">
+
+        <img src="${carro_img}"/>
+</c:forEach>
 </c:forEach>
 </body>
 </html>
