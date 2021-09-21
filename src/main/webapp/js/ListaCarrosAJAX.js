@@ -42,23 +42,49 @@ function atualizaTabelaCarros() {
 
         var tr = table.insertRow(-1);
 
-        // CRIA COLUNA NA LINHA DE CABECALHO
-        var thSel = document.createElement('th');
-        thSel.innerHTML = '';
-        thSel.style.width = "10%";
-        tr.appendChild(thSel);
 
         // CRIA COLUNA NA LINHA DE CABECALHO
-        var thNome = document.createElement('th');
-        thNome.innerHTML = 'Nome';
-        thNome.style.width = "70%";
-        tr.appendChild(thNome);
+        var thModelo = document.createElement('th');
+        thModelo.innerHTML = 'Modelo';
+        thModelo.style.width = "70%";
+        tr.appendChild(thModelo);
 
         // CRIA COLUNA NA LINHA DE CABECALHO
-        var thEstado = document.createElement('th');
-        thEstado.innerHTML = 'Estado';
-        thEstado.style.width = "20%";
-        tr.appendChild(thEstado);
+        var thPlaca = document.createElement('th');
+        thPlaca.innerHTML = 'Placa';
+        thPlaca.style.width = "70%";
+        tr.appendChild(thPlaca);
+
+        // CRIA COLUNA NA LINHA DE CABECALHO
+        var thChassi = document.createElement('th');
+        thChassi.innerHTML = 'Chassi';
+        thChassi.style.width = "70%";
+        tr.appendChild(thChassi);
+
+        // CRIA COLUNA NA LINHA DE CABECALHO
+        var thDescricao = document.createElement('th');
+        thDescricao.innerHTML = 'Descricao';
+        thDescricao.style.width = "70%";
+        tr.appendChild(thDescricao);
+
+        // CRIA COLUNA NA LINHA DE CABECALHO
+        var thAno = document.createElement('th');
+        thAno.innerHTML = 'Ano';
+        thAno.style.width = "70%";
+        tr.appendChild(thAno);
+
+        // CRIA COLUNA NA LINHA DE CABECALHO
+        var thKm = document.createElement('th');
+        thKm.innerHTML = 'Km';
+        thKm.style.width = "70%";
+        tr.appendChild(thKm);
+
+
+        // CRIA COLUNA NA LINHA DE CABECALHO
+        var thValor = document.createElement('th');
+        thValor.innerHTML = 'Valor';
+        thValor.style.width = "70%";
+        tr.appendChild(thValor);
 
         // CRIA DEMAIS LINHAS COM OS VALORES
 
@@ -66,31 +92,56 @@ function atualizaTabelaCarros() {
 
             // CRIA NOVA LINHA
             tr = table.insertRow(-1);
-            //TODO FAZER O PARSING
             var tmp = carros[i];
-            var indice = tmp.indexOf("/");
-            var carro = tmp.slice(0, indice);
-            var estado = tmp.slice(indice + 1);
+            var lista = tmp.split(";");
+            var id = lista[0];
+            var modelo = lista[1];
+            var cnpj = lista[2];
+            var placa = lista[3];
+            var chassi = lista[4];
+            var descricao = lista[5];
+            var ano = lista[6];
+            var km = lista[7];
+            var valor = lista[8];
 
-            // CRIA COLUNA 1 NA LINHA
-
-            var col1 = tr.insertCell(-1);
 
 
-            // col1.style = "text-align:center"; analogo ao comando abaixo
-            col1.style.textAlign = "center";
 
-            // CRIA COLUNA 2 NA LINHA
+
+
+            var carro = lista[0];
+            var estado = lista[1];
+
+
+
 
             var col2 = tr.insertCell(-1);
-            col2.innerHTML = carro;
-
-            // CRIA COLUNA 3 NA LINHA
+            col2.style.textAlign = "center";
+            col2.innerHTML = modelo;
 
             var col3 = tr.insertCell(-1);
-            // col3.style = "text-align:center"; analogo ao comando abaixo
             col3.style.textAlign = "center";
-            col3.innerHTML = estado;
+            col3.innerHTML = placa;
+
+            var col4 = tr.insertCell(-1);
+            col4.style.textAlign = "center";
+            col4.innerHTML = chassi;
+
+            var col5 = tr.insertCell(-1);
+            col5.style.textAlign = "center";
+            col5.innerHTML = descricao;
+
+            var col6 = tr.insertCell(-1);
+            col6.style.textAlign = "center";
+            col6.innerHTML = ano;
+
+            var col7 = tr.insertCell(-1);
+            col7.style.textAlign = "center";
+            col7.innerHTML = km;
+
+            var col8 = tr.insertCell(-1);
+            col8.style.textAlign = "center";
+            col8.innerHTML = valor;
         }
 
         var divContainer = document.getElementById("carros");
