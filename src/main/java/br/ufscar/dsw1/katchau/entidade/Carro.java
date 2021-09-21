@@ -125,7 +125,8 @@ public class Carro {
         File[] files = dir.listFiles();
         if (files != null) {
             for (final File file : files) {
-                fileList.add(file.getPath());
+                String relative = file.getPath().split("webapps")[1];
+                fileList.add(relative);
             }
         }
         return fileList;
