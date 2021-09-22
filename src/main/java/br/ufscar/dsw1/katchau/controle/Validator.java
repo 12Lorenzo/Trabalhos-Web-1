@@ -2,8 +2,10 @@ package br.ufscar.dsw1.katchau.controle;
 
 import br.ufscar.dsw1.katchau.dao.AuthDAO;
 import br.ufscar.dsw1.katchau.dao.CarroDAO;
+import br.ufscar.dsw1.katchau.dao.ClienteDAO;
 import br.ufscar.dsw1.katchau.dao.LojaDAO;
 import br.ufscar.dsw1.katchau.entidade.Carro;
+import br.ufscar.dsw1.katchau.entidade.Cliente;
 import br.ufscar.dsw1.katchau.entidade.Loja;
 import br.ufscar.dsw1.katchau.entidade.Usuario;
 
@@ -17,11 +19,13 @@ import java.util.List;
 public class Validator extends HttpServlet {
     private AuthDAO dao;
     private LojaDAO lojaDAO;
+    private ClienteDAO clienteDAO;
 
     @Override
     public void init() {
         dao = new AuthDAO();
         lojaDAO = new LojaDAO();
+        clienteDAO = new ClienteDAO();
     }
 
     @Override
@@ -58,6 +62,8 @@ public class Validator extends HttpServlet {
                 request.getSession().setAttribute("loja", loja);
                 dispatcher = request.getRequestDispatcher("/painel");
             }else if (result.getPapel() == 3){
+                Cliente cliente = (Cliente) clienteDAO.retornaCli(result.getCodigo());
+                request.getSession().setAttribute("cliente", cliente);
                 dispatcher = request.getRequestDispatcher("/");
             }else {
                 dispatcher = request.getRequestDispatcher("/login.jsp");

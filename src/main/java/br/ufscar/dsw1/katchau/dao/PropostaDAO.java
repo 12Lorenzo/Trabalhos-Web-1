@@ -3,6 +3,7 @@ package br.ufscar.dsw1.katchau.dao;
 //São as chamadas sql.
 
 
+import br.ufscar.dsw1.katchau.entidade.Carro;
 import br.ufscar.dsw1.katchau.entidade.Cliente;
 import br.ufscar.dsw1.katchau.entidade.Proposta;
 
@@ -104,4 +105,47 @@ public class PropostaDAO extends GenericDAO {
         }
         return listaPropostas;
     }
+
+    public String insert(Cliente cliente, Carro carro, Float valor, String proposta){
+        if(cliente == null || carro == null || valor == null || proposta == null){
+                return "Requisição mal formada, favor contatar o adm";
+        }
+            try {
+                Connection conn = this.getConnection();
+                //todo impedir duas duplicadas
+//                List<Proposta> propostasDoCliente = read(cliente);
+
+                //ResultSet resultSet;
+//                id       bigint      not null auto_increment,
+//                status   int         not null,
+//                data     date        not null,
+//                val      float,
+//                condPag  text,
+//                cnpj     varchar(20) not null,
+//                cpf     varchar(20) not null,
+//                carro_id bigint      not null,
+
+                String sqlInsert = "INSERT INTO Proposta VALUES(?, ?, ?, ?, ?, ?, ?)";
+                long millis=System.currentTimeMillis();
+                java.sql.Date date = new java.sql.Date(millis);
+                PreparedStatement statement = conn.prepareStatement(sqlInsert);
+                statement.setInt(1, 0);
+                statement.setDate(2, date); //data de hoje
+                statement.setFloat(3, valor);
+                statement.setString(4, proposta);
+                statement.setString(5, carro.getCnpj());
+                statement.setString(6, cliente.getCpf());
+                statement.setLong(7, carro.getId());
+
+                statement.executeQuery();
+
+                statement.close();
+
+
+            } catch(SQLException e){
+                throw new RuntimeException(e);
+            }
+            return "pipipipopopo";
+        }
+
 }

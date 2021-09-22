@@ -14,8 +14,7 @@
     <input type="number" step="0.01" id="valor" name="valor" value="0"><br>
 
     <label for="condPag">CondPag:</label><br>
-    <input ${requestScope.formMethod == "delete" ? "disabled":""}
-            type="text" id="condPag" name="condPag" value="${requestScope.formMethod == "post" || requestScope.proposta == null?"":requestScope.proposta.condPag}"
+    <input type="text" id="condPag" name="cond" value=""
 
     ><br>
 

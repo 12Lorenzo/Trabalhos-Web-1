@@ -2,11 +2,13 @@ package br.ufscar.dsw1.katchau.controle;
 
 //Faz as operações.
 
+import br.ufscar.dsw1.katchau.dao.CarroDAO;
 import br.ufscar.dsw1.katchau.dao.ClienteDAO;
 import br.ufscar.dsw1.katchau.dao.PropostaDAO;
 import br.ufscar.dsw1.katchau.entidade.Cliente;
 import br.ufscar.dsw1.katchau.entidade.Proposta;
 import br.ufscar.dsw1.katchau.entidade.Usuario;
+import br.ufscar.dsw1.katchau.entidade.Carro;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -25,14 +27,53 @@ public class PropostaController extends HttpServlet {
     public void init() {
         cli = new ClienteDAO();
         dao = new PropostaDAO();
+        carroDAO = new CarroDAO();
     }
 
     private ClienteDAO cli;
+    private CarroDAO carroDAO;
     private PropostaDAO dao;
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        form(request, response);
+        String[] list  = request.getRequestURI().split("/");
+        String id_str = list[list.length -1];
+        Long id;
+        try{
+            id = Long.parseLong(id_str);
+            form(request, response);
+        }catch (NumberFormatException e){
+            System.out.println("ID do carro inválido");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/");
+            dispatcher.forward(request, response);
+        }
+
+
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String[] list  = request.getRequestURI().split("/");
+        String id_str = list[list.length -1];
+        Long id;
+        try{
+            id = Long.parseLong(id_str);
+            Carro carro = carroDAO.read(id);
+            Cliente cliente = (Cliente) request.getSession().getAttribute("cliente");
+            String valor_str = (String) request.getParameter("valor");
+            String cond = (String) request.getParameter("cond");
+            float valor = Float.parseFloat(valor_str);
+            System.out.println(valor);
+            System.out.println(cond);
+            System.out.println(carro.toString());
+            System.out.println(cliente.toString());
+
+//            String result = dao.insert(cliente,carro,);
+        }catch (NumberFormatException e){
+            System.out.println("Número inválido");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/");
+            dispatcher.forward(request, response);
+        }
     }
 
     private void lista(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -51,8 +92,6 @@ public class PropostaController extends HttpServlet {
 
     protected void form(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setAttribute("formMethod", "post");
-        Proposta prop = dao.getAll().get(0);
-        request.setAttribute("proposta", prop);
         RequestDispatcher dispatcher = request.getRequestDispatcher("/logado/adm/formProposta.jsp");
         dispatcher.forward(request, response);
     }
