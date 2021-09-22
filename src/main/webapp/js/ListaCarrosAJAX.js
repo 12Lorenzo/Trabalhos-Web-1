@@ -33,58 +33,62 @@ function atualizaTabelaCarros() {
         // CRIA UMA TABELA DINAMICA
         var sessionVar = document.getElementById('propor').value;
         console.log("propor "+ sessionVar);
-        var table = document.createElement("table");
+        var oldtbody = document.getElementById("tbody");
+        var table = document.createElement("tbody");
+        table.setAttribute("id", "tbody");
+        // var table = document.createElement("table");
         table.border = "1";
         table.style.border = "1px solid black";
         table.style.width = "400px";
 
-        // CRIA LINHA TABELA (LINHA CABECALHO).
+        // // CRIA LINHA TABELA (LINHA CABECALHO).
+        //
+        // var tr = table.insertRow(-1);
+        //
+        //
+        // // CRIA COLUNA NA LINHA DE CABECALHO
+        // var thModelo = document.createElement('th');
+        // thModelo.innerHTML = 'Modelo';
+        // thModelo.style.width = "70%";
+        // tr.appendChild(thModelo);
+        //
+        // // CRIA COLUNA NA LINHA DE CABECALHO
+        // var thPlaca = document.createElement('th');
+        // thPlaca.innerHTML = 'Placa';
+        // thPlaca.style.width = "70%";
+        // tr.appendChild(thPlaca);
+        //
+        // // CRIA COLUNA NA LINHA DE CABECALHO
+        // var thChassi = document.createElement('th');
+        // thChassi.innerHTML = 'Chassi';
+        // thChassi.style.width = "70%";
+        // tr.appendChild(thChassi);
+        //
+        // // CRIA COLUNA NA LINHA DE CABECALHO
+        // var thDescricao = document.createElement('th');
+        // thDescricao.innerHTML = 'Descricao';
+        // thDescricao.style.width = "70%";
+        // tr.appendChild(thDescricao);
+        //
+        // // CRIA COLUNA NA LINHA DE CABECALHO
+        // var thAno = document.createElement('th');
+        // thAno.innerHTML = 'Ano';
+        // thAno.style.width = "70%";
+        // tr.appendChild(thAno);
+        //
+        // // CRIA COLUNA NA LINHA DE CABECALHO
+        // var thKm = document.createElement('th');
+        // thKm.innerHTML = 'Km';
+        // thKm.style.width = "70%";
+        // tr.appendChild(thKm);
+        //
+        //
+        // // CRIA COLUNA NA LINHA DE CABECALHO
+        // var thValor = document.createElement('th');
+        // thValor.innerHTML = 'Valor';
+        // thValor.style.width = "70%";
+        // tr.appendChild(thValor);
 
-        var tr = table.insertRow(-1);
-
-
-        // CRIA COLUNA NA LINHA DE CABECALHO
-        var thModelo = document.createElement('th');
-        thModelo.innerHTML = 'Modelo';
-        thModelo.style.width = "70%";
-        tr.appendChild(thModelo);
-
-        // CRIA COLUNA NA LINHA DE CABECALHO
-        var thPlaca = document.createElement('th');
-        thPlaca.innerHTML = 'Placa';
-        thPlaca.style.width = "70%";
-        tr.appendChild(thPlaca);
-
-        // CRIA COLUNA NA LINHA DE CABECALHO
-        var thChassi = document.createElement('th');
-        thChassi.innerHTML = 'Chassi';
-        thChassi.style.width = "70%";
-        tr.appendChild(thChassi);
-
-        // CRIA COLUNA NA LINHA DE CABECALHO
-        var thDescricao = document.createElement('th');
-        thDescricao.innerHTML = 'Descricao';
-        thDescricao.style.width = "70%";
-        tr.appendChild(thDescricao);
-
-        // CRIA COLUNA NA LINHA DE CABECALHO
-        var thAno = document.createElement('th');
-        thAno.innerHTML = 'Ano';
-        thAno.style.width = "70%";
-        tr.appendChild(thAno);
-
-        // CRIA COLUNA NA LINHA DE CABECALHO
-        var thKm = document.createElement('th');
-        thKm.innerHTML = 'Km';
-        thKm.style.width = "70%";
-        tr.appendChild(thKm);
-
-
-        // CRIA COLUNA NA LINHA DE CABECALHO
-        var thValor = document.createElement('th');
-        thValor.innerHTML = 'Valor';
-        thValor.style.width = "70%";
-        tr.appendChild(thValor);
 
         // CRIA DEMAIS LINHAS COM OS VALORES
 
@@ -144,18 +148,13 @@ function atualizaTabelaCarros() {
             col8.innerHTML = valor;
         }
 
-        var divContainer = document.getElementById("carros");
-        divContainer.innerHTML = "";
 
         // CRIA UM PARAGRAFO (TAG P) COM A QUANTIDADE DE CIDADES
 
-        var p = document.createElement('p');
-        p.innerHTML = 'Quantidade: ' + carros.length;
+        var p = document.getElementById('qtd');
+        p.innerHTML = carros.length;
 
-        // ADICIONA O PARAGRAFO AO CONTAINER.
-        divContainer.appendChild(p);
 
-        // ADICIONA A NOVA TABELA AO CONTAINER.
-        divContainer.appendChild(table);
+        oldtbody.parentNode.replaceChild(table,oldtbody);
     }
 }
