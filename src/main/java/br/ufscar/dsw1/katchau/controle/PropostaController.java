@@ -48,8 +48,6 @@ public class PropostaController extends HttpServlet {
             RequestDispatcher dispatcher = request.getRequestDispatcher("/logado/adm/erros.jsp");
             dispatcher.forward(request, response);
         }
-
-
     }
 
     @Override

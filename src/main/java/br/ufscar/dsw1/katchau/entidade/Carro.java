@@ -30,6 +30,7 @@ public class Carro {
         this.ano = ano;
         this.km = km;
         this.valor = valor;
+        this.imagens = new ArrayList<String>();
     }
     public Carro(Long id) {
         this.id = id;
@@ -44,6 +45,7 @@ public class Carro {
         this.ano = ano;
         this.km = km;
         this.valor = valor;
+        this.imagens = new ArrayList<String>();
     }
     public Long getId() {
         return id;
@@ -146,6 +148,6 @@ public class Carro {
     @Override
     public String toString() {
         return this.id + ";"+this.modelo+";"+this.cnpj+";"+this.placa+";"+this.chassi+";"+this.descricao+
-        ";"+this.ano+";"+this.km+";"+ this.valor;
+        ";"+this.ano+";"+this.km+";"+ this.valor+';'+this.imagens;
     }
 }

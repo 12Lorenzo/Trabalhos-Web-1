@@ -64,6 +64,15 @@ function atualizaTabelaCarros(context) {
             var ano = lista[6];
             var km = lista[7];
             var valor = lista[8];
+            var listaImagens = lista[9].replace("[","").replace("]","").split(",");
+
+            listaImagens.forEach((item, index) => {
+                var img = document.createElement("img");
+                img.setAttribute("src", item);
+                img.setAttribute("width","10%");
+                img.setAttribute("height", "10%");
+                cellimg.appendChild(img);
+            })
 
 
             var col2 = tr.insertCell(-1);
