@@ -62,7 +62,7 @@ public class CarroDAO extends GenericDAO{
             Connection conn = this.getConnection();
             ResultSet resultSet;
             PreparedStatement statement = conn.prepareStatement(sql1);
-            statement.setLong(1,carroId);
+            statement.setLong(1, carroId);
             resultSet = statement.executeQuery();
             listaCarros = getFromResult(resultSet);
             resultSet.close();

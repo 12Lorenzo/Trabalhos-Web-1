@@ -128,6 +128,8 @@
 
         <td> <a href="./carros/?id=${carro.id}&method=delete">deletar</a>
         </td>
+        </td>
+
         </tr>
     </c:forEach>
 
@@ -160,7 +162,7 @@
         <td><c:out value="${proposta.cnpj}"/></td>
         <td><c:out value="${proposta.carro_id}"/></td>
         <td><c:out value="${proposta.condPag}"/></td>
-        <td> <a href="./proposta/?id=${proposta.id}&method=post">Dar Proposta</a>
+
         </td>
 
         </tr>
