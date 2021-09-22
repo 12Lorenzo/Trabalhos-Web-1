@@ -31,7 +31,7 @@
     <div align="center">
         <p><fmt:message key="lista_de_carros"/></p>
         <label for="carro"><fmt:message key="modelo"/></label> <input id="carro" name="carro"
-                                                 onkeyUp="getCarros()">
+                                                 onkeyUp="getCarros('${pageContext.request.contextPath}')">
         <div id="carros">
 
             <p>Quantidade: <span id="qtd">${fn:length(bean.carros)}</span></p>
@@ -64,7 +64,7 @@
                         <td style="text-align: center">${carro.km}</td>
                         <td style="text-align: center">${carro.valor}</td>
                         <c:if test = "${boo}">
-                            <td style="text-align: center"><a href="">+</a></td>
+                            <td style="text-align: center"><a href="${pageContext.request.contextPath.concat('/proposta/').concat(carro.id.toString())}">+</a></td>
                         </c:if>
                     </tr>
                 </c:forEach>

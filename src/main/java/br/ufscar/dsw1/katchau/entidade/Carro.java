@@ -17,6 +17,7 @@ public class Carro {
     private int ano;
     private float km;
     private float valor;
+    private List<String> imagens;
 
     public Carro(Long id,String cnpj,String placa,String modelo,String chassi,String descricao,int ano,float km,float valor){
         super();
@@ -110,6 +111,14 @@ public class Carro {
     }
     public float getValor() {
         return valor;
+    }
+
+    public void setImagens(List<String> imagens){
+        this.imagens = imagens;
+    }
+
+    public List<String> getImagens(){
+        return imagens;
     }
 
     public void setValor

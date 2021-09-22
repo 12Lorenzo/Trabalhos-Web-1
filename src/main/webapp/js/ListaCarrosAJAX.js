@@ -4,7 +4,7 @@ function apresenta(selCidade){
     alert("Selecionado: " + selCidade.target.value);
 }
 
-function getCarros() {
+function getCarros(context) {
     var cidade = document.getElementById("carro");
     var modelo = carro.value;
     if (typeof XMLHttpRequest !== "undefined") {
@@ -20,13 +20,13 @@ function getCarros() {
 
     var url = "results";
     url += "?term=" + modelo;
-    xmlHttp.onreadystatechange = atualizaTabelaCarros;
+    xmlHttp.onreadystatechange = () => atualizaTabelaCarros(context);
     xmlHttp.open("GET", url, true);
     xmlHttp.send(null);
 
 }
 
-function atualizaTabelaCarros() {
+function atualizaTabelaCarros(context) {
     if (xmlHttp.readyState === 4 || xmlHttp.readyState === "complete") {
         var carros = JSON.parse(xmlHttp.responseText);
 
@@ -98,7 +98,7 @@ function atualizaTabelaCarros() {
                 col9.style.textAlign = "center";
 
                 var a = document.createElement("a");
-                a.setAttribute("href", "");
+                a.setAttribute("href", context+"/proposta/"+id);
                 a.innerHTML = "+";
                 col9.appendChild(a);
             }

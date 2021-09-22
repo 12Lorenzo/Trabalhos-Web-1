@@ -106,27 +106,14 @@ public class PropostaDAO extends GenericDAO {
         return listaPropostas;
     }
 
-    public String insert(Cliente cliente, Carro carro, Float valor, String proposta){
+    public int insert(Cliente cliente, Carro carro, Float valor, String proposta){
         if(cliente == null || carro == null || valor == null || proposta == null){
-                return "Requisição mal formada, favor contatar o adm";
+                return 400;
         }
             try {
                 Connection conn = this.getConnection();
-                //todo impedir duas duplicadas
-//                List<Proposta> propostasDoCliente = read(cliente);
-
-                //ResultSet resultSet;
-//                id       bigint      not null auto_increment,
-//                status   int         not null,
-//                data     date        not null,
-//                val      float,
-//                condPag  text,
-//                cnpj     varchar(20) not null,
-//                cpf     varchar(20) not null,
-//                carro_id bigint      not null,
-
-                String sqlInsert = "INSERT INTO Proposta VALUES(?, ?, ?, ?, ?, ?, ?)";
-                long millis=System.currentTimeMillis();
+                String sqlInsert = "INSERT INTO Proposta(status, data, val, condPag, cnpj, cpf, carro_id) VALUES(?, ?, ?, ?, ?, ?, ?)";
+                long millis = System.currentTimeMillis();
                 java.sql.Date date = new java.sql.Date(millis);
                 PreparedStatement statement = conn.prepareStatement(sqlInsert);
                 statement.setInt(1, 0);
@@ -137,15 +124,16 @@ public class PropostaDAO extends GenericDAO {
                 statement.setString(6, cliente.getCpf());
                 statement.setLong(7, carro.getId());
 
-                statement.executeQuery();
+                statement.executeUpdate();
 
                 statement.close();
 
 
             } catch(SQLException e){
-                throw new RuntimeException(e);
+                System.out.println(e);
+                return 3;
             }
-            return "pipipipopopo";
+            return 0;
         }
 
 }

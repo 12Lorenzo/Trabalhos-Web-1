@@ -134,9 +134,7 @@ public class ClienteDAO extends GenericDAO implements Cloneable {
                 String telefone = resultSet.getString("telefone");
                 Date nascimento = resultSet.getDate("nascimento");
                 String sexo = resultSet.getString("sexo");
-                System.out.println("Qualquer outra coisa");
                 cli = new Cliente(cpf, telefone, sexo, nascimento);
-                //cli = clone(cli1);
             }else {
                 return null;
             }

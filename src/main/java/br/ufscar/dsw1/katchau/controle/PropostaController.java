@@ -18,6 +18,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
+import java.util.Objects;
 
 @WebServlet(urlPatterns = "/proposta/*")
 public class PropostaController extends HttpServlet {
@@ -43,8 +44,8 @@ public class PropostaController extends HttpServlet {
             id = Long.parseLong(id_str);
             form(request, response);
         }catch (NumberFormatException e){
-            System.out.println("ID do carro inválido");
-            RequestDispatcher dispatcher = request.getRequestDispatcher("/");
+            request.setAttribute("erro", 404);
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/logado/adm/erros.jsp");
             dispatcher.forward(request, response);
         }
 
@@ -63,17 +64,27 @@ public class PropostaController extends HttpServlet {
             String valor_str = (String) request.getParameter("valor");
             String cond = (String) request.getParameter("cond");
             float valor = Float.parseFloat(valor_str);
+            int result = 0;
+            List<Proposta> propostasDoCliente = dao.read(cliente);
+            for (Proposta current : propostasDoCliente) {
+                if (Objects.equals(current.getCarro_id(), id) && current.getStatus() == 0) {
+                    result = 2;
+                    break;
+                }
+            }
             System.out.println(valor);
             System.out.println(cond);
             System.out.println(carro.toString());
             System.out.println(cliente.toString());
+            result = result == 0? dao.insert(cliente,carro,valor,cond): result;
+            request.setAttribute("erro", result);
 
-//            String result = dao.insert(cliente,carro,);
         }catch (NumberFormatException e){
-            System.out.println("Número inválido");
-            RequestDispatcher dispatcher = request.getRequestDispatcher("/");
-            dispatcher.forward(request, response);
+            request.setAttribute("erro", 404);
         }
+
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/logado/adm/erros.jsp");
+        dispatcher.forward(request, response);
     }
 
     private void lista(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
