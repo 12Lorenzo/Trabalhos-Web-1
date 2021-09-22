@@ -7,14 +7,25 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>Katchau</title>
-    <script src="js/ListaCarrosAJAX.js"></script>
+    <script src="${pageContext.request.contextPath.concat('/js/ListaCarrosAJAX.js')}"></script>
 </head>
 <body>
 <br />
 <jsp:useBean id='bean' class='br.ufscar.dsw1.katchau.bean.BuscaPorModeloBean' />
-<%=request.getSession().getAttribute("message")%>
-<a href="./Validator">Login</a>
+<%--<%=request.getSession().getAttribute("message")%>--%>
+
+<c:set var="boo" value="${sessionScope.user == null? false : sessionScope.user.papel == 3}"/>
+<%--<c:out value = "${boo}"/>--%>
+
+<c:if test="${sessionScope.user == null}">
+    <a href="${pageContext.request.contextPath.concat('/Validator') }">Login</a>
+</c:if>
+<c:if test="${sessionScope.user != null}">
+    <a href="${pageContext.request.contextPath.concat('/Validator/logout') }">Logout</a>
+</c:if>
+<input type='hidden' name='${boo}' value='${boo}' id='propor'/>
 <form name='form'>
+
     <div align="center">
         <p>Lista de Carros</p>
         <label for="carro">Modelo</label> <input id="carro" name="carro"
@@ -32,6 +43,10 @@
                     <th style="width: 20%; text-align: center">Ano</th>
                     <th style="width: 70%;">Km</th>
                     <th style="width: 70%;">Valor</th>
+
+                    <c:if test = "${boo}">
+                        <th style="width: 70%;">Propor</th>
+                    </c:if>
                 </tr>
                 <c:forEach var="carro" items="${bean.carros}">
                     <tr>
@@ -43,6 +58,9 @@
                         <td style="text-align: center">${carro.ano}</td>
                         <td style="text-align: center">${carro.km}</td>
                         <td style="text-align: center">${carro.valor}</td>
+                        <c:if test = "${boo}">
+                            <td style="text-align: center"><a href="">Fazer Proposta</a></td>
+                        </c:if>
                     </tr>
                 </c:forEach>
             </table>

@@ -7,7 +7,6 @@ function apresenta(selCidade){
 function getCarros() {
     var cidade = document.getElementById("carro");
     var modelo = carro.value;
-    console.log("modelo :{"+modelo+"}");
     if (typeof XMLHttpRequest !== "undefined") {
         xmlHttp = new XMLHttpRequest();
     } else if (window.ActiveXObject) {
@@ -32,7 +31,8 @@ function atualizaTabelaCarros() {
         var carros = JSON.parse(xmlHttp.responseText);
 
         // CRIA UMA TABELA DINAMICA
-
+        var sessionVar = document.getElementById('propor').value;
+        console.log("propor "+ sessionVar);
         var table = document.createElement("table");
         table.border = "1";
         table.style.border = "1px solid black";

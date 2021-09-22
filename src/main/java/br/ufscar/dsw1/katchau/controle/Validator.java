@@ -13,7 +13,7 @@ import javax.servlet.annotation.*;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet(name = "Validator", value = "/Validator")
+@WebServlet(name = "Validator", value = "/Validator/*")
 public class Validator extends HttpServlet {
     private AuthDAO dao;
     private LojaDAO lojaDAO;
@@ -23,14 +23,25 @@ public class Validator extends HttpServlet {
         dao = new AuthDAO();
         lojaDAO = new LojaDAO();
     }
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        RequestDispatcher dispatcher = request.getRequestDispatcher("./login.jsp");
+        String action = request.getRequestURI();
+        RequestDispatcher dispatcher;
+        if (request.getSession()!= null && action.contains("logout")){
+            request.getSession().invalidate();
+            response.sendRedirect(request.getContextPath());
+            return;
+        }
+
+        dispatcher = request.getRequestDispatcher("/login.jsp");
+
         dispatcher.forward(request, response);
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        RequestDispatcher dispatcher;
         String email = request.getParameter("email");
         String password = request.getParameter("password");
         Usuario result = password != null && email != null ? dao.validate(email, password): null;
@@ -38,21 +49,23 @@ public class Validator extends HttpServlet {
         if(result != null){
             request.setAttribute("erro", "bem vindo " + result.getNome());
             request.getSession().setAttribute("user", result);
-            RequestDispatcher dispatcher;
+
             if(result.getPapel() == 1){
-                dispatcher = request.getRequestDispatcher("./adm");
+                dispatcher = request.getRequestDispatcher("/adm");
             }
             else if (result.getPapel() == 2){
                 Loja loja = (Loja) lojaDAO.read(result.getCodigo());
                 request.getSession().setAttribute("loja", loja);
                 dispatcher = request.getRequestDispatcher("/painel");
+            }else if (result.getPapel() == 3){
+                dispatcher = request.getRequestDispatcher("/");
             }else {
-                dispatcher = request.getRequestDispatcher("./login.jsp");
-            }
+                dispatcher = request.getRequestDispatcher("/login.jsp");
+        }
             dispatcher.forward(request, response);
         } else{
             request.setAttribute("erro", "E-mail ou senha incorretos");
-            RequestDispatcher dispatcher = request.getRequestDispatcher("./login.jsp");
+            dispatcher = request.getRequestDispatcher("/login.jsp");
             dispatcher.forward(request, response);
         }
     }
