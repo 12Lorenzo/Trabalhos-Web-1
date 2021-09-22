@@ -6,13 +6,26 @@
 <html>
 <head>
     <title>Title</title>
+    <style>
+        img {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            width: 10%;
+        }
+    </style>
 </head>
 <body>
 <a>Criar novo anuncio</a>
 
 <c:forEach var="carro" items="${ListaCarros}" varStatus="loop">
     <br>
-    <h1>Carro:</h1> <table border="1" style="width: 400px; border: 1px solid black">
+    <h1>Carro:</h1>
+    <c:forEach var="carro_img" items="${carro.getImages(pageContext.servletContext.getRealPath('upload'))}" varStatus="loop">
+
+        <img src="${carro_img}"/>
+    </c:forEach><br>
+     <table border="1" style="width: 400px; border: 1px solid black">
     <tr>
         <td style="text-align: center">${carro.modelo}</td>
         <td style="text-align: center">${carro.placa}</td>
@@ -52,10 +65,6 @@
         </table>
     </c:forEach>
 
-    <c:forEach var="carro_img" items="${carro.getImages(pageContext.servletContext.getRealPath('upload'))}" varStatus="loop">
-
-        <img src="${carro_img}"/>
-</c:forEach>
 </c:forEach>
 </body>
 </html>
