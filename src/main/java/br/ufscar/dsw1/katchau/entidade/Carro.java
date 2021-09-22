@@ -117,8 +117,9 @@ public class Carro {
         this.valor = valor;
     }
 
-    public static List<String> getImages(String uploadPath){
+    public List<String> getImages(String uploadPath){
         System.out.println("cheguei -:> " + uploadPath);
+        uploadPath = uploadPath + File.separator + this.id.toString();
         List<String> fileList = new ArrayList<String>();
         File dir = new File(uploadPath);
 

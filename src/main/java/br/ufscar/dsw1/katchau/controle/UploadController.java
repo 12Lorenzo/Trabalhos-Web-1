@@ -17,7 +17,7 @@ import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
 import static br.ufscar.dsw1.katchau.Constants.*;
 
-@WebServlet(name = "UploadController", value = "/UploadController")
+@WebServlet(name = "UploadController", value = "/UploadController/*")
 public class UploadController extends HttpServlet {
 
     @Override
@@ -28,6 +28,8 @@ public class UploadController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        String[] url = request.getPathInfo().split("/");
+        String id = url[url.length -1];
 
         if (ServletFileUpload.isMultipartContent(request)) {
 
@@ -38,33 +40,29 @@ public class UploadController extends HttpServlet {
             ServletFileUpload upload = new ServletFileUpload(factory);
             upload.setFileSizeMax(MAX_FILE_SIZE);
             upload.setSizeMax(MAX_REQUEST_SIZE);
-            String uploadPath = getServletContext().getRealPath(UPLOAD_DIRECTORY);
+            String localPath = UPLOAD_DIRECTORY + File.separator + id;
+            String uploadPath = getServletContext().getRealPath(localPath);
             File uploadDir = new File(uploadPath);
             if (!uploadDir.exists()) {
-                uploadDir.mkdir();
+                uploadDir.mkdirs();
             }
 
             try {
                 List<FileItem> formItems = upload.parseRequest(request);
-                System.out.println("try");
                 if (formItems != null && formItems.size() > 0) {
                     for (FileItem item : formItems) {
-                        System.out.println("item"+item);
                         if (!item.isFormField()) {
                             String fileName = new File(item.getName()).getName();
                             String filePath = uploadPath + File.separator + fileName;
                             File storeFile = new File(filePath);
-                            System.out.println("i'm here "+filePath);
                             item.write(storeFile);
                             request.getSession().setAttribute("message", "File " + fileName + " has uploaded successfully!");
                         }
                     }
                 }
             } catch (Exception ex) {
-                System.out.println("catch");
                 request.getSession().setAttribute("message", "There was an error: " + ex.getMessage());
             }
-            System.out.println("terminando");
             response.sendRedirect(request.getContextPath());
         }
 
