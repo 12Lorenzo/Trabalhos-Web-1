@@ -48,6 +48,7 @@ public class ResultadosController extends HttpServlet {
         BuscaPorModeloBean bean = new BuscaPorModeloBean();
         List<Carro> listaCarros = bean.getCarros(nome);
         for (Carro carro : listaCarros) {
+            //TODO passar as imagens aqui
             carros.add(carro.toString());
         }
 

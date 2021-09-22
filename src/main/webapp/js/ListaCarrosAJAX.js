@@ -36,70 +36,27 @@ function atualizaTabelaCarros() {
         var oldtbody = document.getElementById("tbody");
         var table = document.createElement("tbody");
         table.setAttribute("id", "tbody");
-        // var table = document.createElement("table");
+
         table.border = "1";
         table.style.border = "1px solid black";
         table.style.width = "400px";
-
-        // // CRIA LINHA TABELA (LINHA CABECALHO).
-        //
-        // var tr = table.insertRow(-1);
-        //
-        //
-        // // CRIA COLUNA NA LINHA DE CABECALHO
-        // var thModelo = document.createElement('th');
-        // thModelo.innerHTML = 'Modelo';
-        // thModelo.style.width = "70%";
-        // tr.appendChild(thModelo);
-        //
-        // // CRIA COLUNA NA LINHA DE CABECALHO
-        // var thPlaca = document.createElement('th');
-        // thPlaca.innerHTML = 'Placa';
-        // thPlaca.style.width = "70%";
-        // tr.appendChild(thPlaca);
-        //
-        // // CRIA COLUNA NA LINHA DE CABECALHO
-        // var thChassi = document.createElement('th');
-        // thChassi.innerHTML = 'Chassi';
-        // thChassi.style.width = "70%";
-        // tr.appendChild(thChassi);
-        //
-        // // CRIA COLUNA NA LINHA DE CABECALHO
-        // var thDescricao = document.createElement('th');
-        // thDescricao.innerHTML = 'Descricao';
-        // thDescricao.style.width = "70%";
-        // tr.appendChild(thDescricao);
-        //
-        // // CRIA COLUNA NA LINHA DE CABECALHO
-        // var thAno = document.createElement('th');
-        // thAno.innerHTML = 'Ano';
-        // thAno.style.width = "70%";
-        // tr.appendChild(thAno);
-        //
-        // // CRIA COLUNA NA LINHA DE CABECALHO
-        // var thKm = document.createElement('th');
-        // thKm.innerHTML = 'Km';
-        // thKm.style.width = "70%";
-        // tr.appendChild(thKm);
-        //
-        //
-        // // CRIA COLUNA NA LINHA DE CABECALHO
-        // var thValor = document.createElement('th');
-        // thValor.innerHTML = 'Valor';
-        // thValor.style.width = "70%";
-        // tr.appendChild(thValor);
 
 
         // CRIA DEMAIS LINHAS COM OS VALORES
 
         for (var i = 0; i < carros.length; i++) {
 
-            // CRIA NOVA LINHA
-            tr = table.insertRow(-1);
+
+
             var tmp = carros[i];
             var lista = tmp.split(";");
             var id = lista[0];
             var modelo = lista[1];
+            var images = table.insertRow(-1);
+            var cellimg = images.insertCell(-1);
+            cellimg.setAttribute("id", "image"+id);
+            cellimg.setAttribute("colspan","7");
+            tr = table.insertRow(-1);
             var cnpj = lista[2];
             var placa = lista[3];
             var chassi = lista[4];
@@ -107,16 +64,6 @@ function atualizaTabelaCarros() {
             var ano = lista[6];
             var km = lista[7];
             var valor = lista[8];
-
-
-
-
-
-
-            var carro = lista[0];
-            var estado = lista[1];
-
-
 
 
             var col2 = tr.insertCell(-1);
@@ -146,10 +93,19 @@ function atualizaTabelaCarros() {
             var col8 = tr.insertCell(-1);
             col8.style.textAlign = "center";
             col8.innerHTML = valor;
+            if (sessionVar !== "false") {
+                var col9 = tr.insertCell(-1);
+                col9.style.textAlign = "center";
+
+                var a = document.createElement("a");
+                a.setAttribute("href", "");
+                a.innerHTML = "+";
+                col9.appendChild(a);
+            }
         }
 
 
-        // CRIA UM PARAGRAFO (TAG P) COM A QUANTIDADE DE CIDADES
+        // Pega o span COM A QUANTIDADE DE CARROS
 
         var p = document.getElementById('qtd');
         p.innerHTML = carros.length;

@@ -64,7 +64,7 @@
                         <td style="text-align: center">${carro.km}</td>
                         <td style="text-align: center">${carro.valor}</td>
                         <c:if test = "${boo}">
-                            <td style="text-align: center"><a href=""><fmt:message key="fazer_proposta"/></a></td>
+                            <td style="text-align: center"><a href="">+</a></td>
                         </c:if>
                     </tr>
                 </c:forEach>
