@@ -65,7 +65,7 @@ function atualizaTabelaCarros(context) {
             var valor = lista[8];
             var listaImagens = lista[9].replace("[","").replace("]","").split(",");
             var externalCarousel = document.createElement("div");
-            externalCarousel.setAttribute("id","carouselExampleControls");
+            externalCarousel.setAttribute("id","carouselExampleControls" + id);
             externalCarousel.setAttribute("class","carousel slide");
             externalCarousel.setAttribute("data-bs-ride","carousel");
             externalCarousel.setAttribute("style","width: 300px")
@@ -96,7 +96,7 @@ function atualizaTabelaCarros(context) {
                 var button1 = document.createElement("button");
                 button1.setAttribute("class","carousel-control-prev");
                 button1.setAttribute("type","button");
-                button1.setAttribute("data-bs-target","#carouselExampleControls");
+                button1.setAttribute("data-bs-target","#carouselExampleControls"+ id);
                 button1.setAttribute("data-bs-slide","prev");
                 var span1 = document.createElement("span");
                 span1.setAttribute("class","carousel-control-prev-icon");
@@ -111,7 +111,7 @@ function atualizaTabelaCarros(context) {
                 var button2 = document.createElement("button");
                 button2.setAttribute("class","carousel-control-next");
                 button2.setAttribute("type","button");
-                button2.setAttribute("data-bs-target","#carouselExampleControls");
+                button2.setAttribute("data-bs-target","#carouselExampleControls"+ id);
                 button2.setAttribute("data-bs-slide","next");
                 var span3 = document.createElement("span");
                 span3.setAttribute("class","carousel-control-next-icon");

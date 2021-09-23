@@ -65,7 +65,7 @@
                         <c:if test="${carro.getImages(pageContext.servletContext.getRealPath('upload')).size() > 0}">
 
 
-                                <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel" style="width: 300px">
+                                <div id="carouselExampleControls${carro.id}" class="carousel slide" data-bs-ride="carousel" style="width: 300px">
                                     <div class="carousel-inner">
                                         <c:forEach var="img" items="${carro.getImages(pageContext.servletContext.getRealPath('upload'))}" varStatus="loopimg">
                                             <div class="carousel-item ${loopimg.index == 0? 'active':''}">
@@ -73,11 +73,11 @@
                                             </div>
                                         </c:forEach>
                                     </div>
-                                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+                                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls${carro.id}" data-bs-slide="prev">
                                         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                                         <span class="visually-hidden">Previous</span>
                                     </button>
-                                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+                                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls${carro.id}" data-bs-slide="next">
                                         <span class="carousel-control-next-icon" aria-hidden="true"></span>
                                         <span class="visually-hidden">Next</span>
                                     </button>
