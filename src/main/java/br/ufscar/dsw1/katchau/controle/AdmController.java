@@ -33,11 +33,13 @@ public class AdmController extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.setCharacterEncoding("UTF-8");
         doPost(request, response);
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.setCharacterEncoding("UTF-8");
         Usuario user = (Usuario) request.getSession().getAttribute("user");
         if (user == null || user.getPapel() != 1){
             request.setAttribute("erro", "você não é adm, logue novamente");

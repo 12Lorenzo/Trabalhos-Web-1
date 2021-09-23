@@ -29,6 +29,7 @@ public class CarroController extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.setCharacterEncoding("UTF-8");
         Usuario currentUser = (Usuario) request.getSession().getAttribute("user");
         if(currentUser != null && currentUser.getPapel() == 1) {
             Long codigo = request.getParameter("id")==null?null:Long.valueOf(request.getParameter("id"));
@@ -54,6 +55,8 @@ public class CarroController extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
+        req.setCharacterEncoding("UTF-8");
         doGet(req,resp);
     }
 }

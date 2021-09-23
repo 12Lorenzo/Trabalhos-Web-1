@@ -22,6 +22,10 @@
     <c:when test = "${requestScope.erro == 3}">
         Houve um erro na conexão com o banco de dados.
     </c:when>
+    <c:when test = "${requestScope.erro == 4}">
+        Sua Sessão como Cliente está inválida.
+    </c:when>
+
     <c:when test = "${requestScope.erro == 404}">
         Requisição mal formada, por favor contate um adm.
     </c:when>

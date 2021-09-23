@@ -28,10 +28,12 @@ public class LojaController extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.setCharacterEncoding("UTF-8");
         lista(request, response);
     }
 
     private void lista(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.setCharacterEncoding("UTF-8");
         List<Loja> listaLojas = dao.read();
         request.setAttribute("listaLojas", listaLojas);
         RequestDispatcher dispatcher = request.getRequestDispatcher("/logado/listas/listaLoja.jsp");

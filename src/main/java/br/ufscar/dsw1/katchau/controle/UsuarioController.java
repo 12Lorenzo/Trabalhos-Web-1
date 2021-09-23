@@ -26,6 +26,7 @@ public class UsuarioController extends HttpServlet {
     }
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.setCharacterEncoding("UTF-8");
         Usuario currentUser = (Usuario) request.getSession().getAttribute("user");
         if(currentUser != null && currentUser.getPapel() == 1) {
             String codigo = request.getParameter("codigo");
@@ -55,6 +56,7 @@ public class UsuarioController extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.setCharacterEncoding("UTF-8");
         request.setAttribute("formMethod", "post");
         Usuario user = dao.getAll().get(0);
         request.setAttribute("usuario", user);
@@ -63,6 +65,7 @@ public class UsuarioController extends HttpServlet {
     }
 
     private void lista(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.setCharacterEncoding("UTF-8");
         List<Usuario> listaUsuarios = dao.getAll();
         request.setAttribute("listaUsuarios", listaUsuarios);
         System.out.println("Usuarios-->" + listaUsuarios.toString());

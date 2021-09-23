@@ -25,10 +25,12 @@ public class ClienteController extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.setCharacterEncoding("UTF-8");
         lista(request, response);
     }
 
     private void lista(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.setCharacterEncoding("UTF-8");
         List<Cliente> listaClientes = dao.read();
         request.setAttribute("listaClientes", listaClientes);
         System.out.println("-->" + listaClientes.toString());

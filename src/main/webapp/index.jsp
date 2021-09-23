@@ -26,6 +26,9 @@
 </c:if>
 <c:if test="${sessionScope.user != null}">
     <a href="${pageContext.request.contextPath.concat('/Validator/logout') }">Logout</a>
+    <c:if test="${sessionScope.user.papel == 3}">
+        <a href="${pageContext.request.contextPath.concat('/painelCliente') }">Meu Painel</a>
+    </c:if>
 </c:if>
 <input type='hidden' name='${boo}' value='${boo}' id='propor'/>
 <form name='form'>
