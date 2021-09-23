@@ -7,9 +7,7 @@
     <title>Title</title>
 </head>
 <body>
-<form action="" method="${requestScope.formMethod}" enctype="multipart/form-data">
-    <label for="cnpj">CNPJ:</label><br>
-    <input type="text" id="cnpj" name="cnpj" value=""><br>
+<form action="${pageContext.request.contextPath}/carros/" method="${requestScope.formMethod}" enctype="multipart/form-data">
 
     <label for="placa">Placa:</label><br>
     <input type="text" id="placa" name="placa" value=""><br>
@@ -24,11 +22,11 @@
 
 
     <label for="ano">Ano:</label><br>
-    <input type="int" id="ano" name="ano" value=""><br>
+    <input type="number" id="ano" name="ano" value=""><br>
 
 
     <label for="km">Km:</label><br>
-    <input type="float" id="km" name="km" value=""><br>
+    <input type="number" id="km" name="km" value="" step="0.1"><br>
 
 
     <label for="descricao">Descricao:</label><br>
@@ -36,20 +34,11 @@
 
 
     <label for="valor">Valor:</label><br>
-    <input type="float" id="valor" name="valor" value=""><br>
+    <input type="number" id="valor" name="valor" value="" step="0.01"><br><br>
 
 
 
-    <input type="file" name="imagem 1" />
-    <input type="file" name="imagem 2" />
-    <input type="file" name="imagem 3" />
-    <input type="file" name="imagem 4" />
-    <input type="file" name="imagem 5" />
-    <input type="file" name="imagem 6" />
-    <input type="file" name="imagem 7" />
-    <input type="file" name="imagem 8" />
-    <input type="file" name="imagem 9" />
-    <input type="file" name="imagem 10" />
+    <input type="file" name="imagem 1" multiple/><br>
 
     <input type="submit" value="Submit"><br>
 

@@ -16,7 +16,7 @@
     </style>
 </head>
 <body>
-<a>Criar novo anuncio</a>
+<a href="${pageContext.request.contextPath}/logado/adm/formCarro.jsp">Criar novo anuncio</a>
 
 <c:forEach var="carro" items="${ListaCarros}" varStatus="loop">
     <br>
