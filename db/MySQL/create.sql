@@ -23,14 +23,14 @@ create table Cliente
     telefone   varchar(256),
     sexo       varchar(256),
     nascimento Date,
-    foreign key (cpf) references Usuario (codigo)
+    foreign key (cpf) references Usuario (codigo) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 create table Loja
 (
     cnpj      varchar(20) not null,
     descricao varchar(256),
-    foreign key (cnpj) references Usuario (codigo)
+    foreign key (cnpj) references Usuario (codigo) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 create table Carro
@@ -45,7 +45,7 @@ create table Carro
     descricao text,
     valor     float,
     primary key (id),
-    foreign key (cnpj) references Loja (cnpj) ON DELETE CASCADE
+    foreign key (cnpj) references Loja (cnpj) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 create table Proposta
@@ -59,9 +59,9 @@ create table Proposta
     cpf     varchar(20) not null,
     carro_id bigint      not null,
     primary key (id),
-    foreign key (cpf) references Cliente (cpf),
-    foreign key (carro_id) references Carro (id),
-    foreign key (cnpj) references Carro (cnpj) ON DELETE CASCADE
+    foreign key (cpf) references Cliente (cpf) ON DELETE CASCADE ON UPDATE CASCADE ,
+    foreign key (carro_id) references Carro (id) ON DELETE CASCADE ON UPDATE CASCADE ,
+    foreign key (cnpj) references Carro (cnpj) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 insert into Usuario(codigo, email, senha, nome, papel)
