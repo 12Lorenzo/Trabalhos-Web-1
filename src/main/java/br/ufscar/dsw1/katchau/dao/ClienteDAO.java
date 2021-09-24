@@ -3,6 +3,7 @@ package br.ufscar.dsw1.katchau.dao;
 //São as chamadas sql.
 
 import br.ufscar.dsw1.katchau.entidade.Cliente;
+import br.ufscar.dsw1.katchau.entidade.Erros;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -16,17 +17,9 @@ public class ClienteDAO extends GenericDAO implements Cloneable {
         try {
             Connection conn = this.getConnection();
             ResultSet resultSet;
-//            if(lojaCnpj != null) {
-//                PreparedStatement statement = conn.prepareStatement(sql);
-//
-//                statement.setString(1, lojaCnpj);
-//                resultSet = statement.executeQuery();
-//                statement.close();
-//            } else {
             PreparedStatement statement = conn.prepareStatement(sqlSelect);
             resultSet = statement.executeQuery();
 
-//            }
             while (resultSet.next()) {
                 String cpf = resultSet.getString("cpf");
                 String telefone = resultSet.getString("telefone");
@@ -44,12 +37,11 @@ public class ClienteDAO extends GenericDAO implements Cloneable {
         return listaClientes;
     }
 
-    public void insert(Cliente cliente){
+    public int insert(Cliente cliente){
         try {
             Connection conn = this.getConnection();
-            //ResultSet resultSet;
 
-            String sqlInsert = "INSERT INTO Cliente VALUES(?, ?, ?, ?)";
+            String sqlInsert = "INSERT INTO Cliente(cpf, telefone, sexo, nascimento) VALUES(?, ?, ?, ?)";
 
             PreparedStatement statement = conn.prepareStatement(sqlInsert);
             statement.setString(1, cliente.getCpf());
@@ -57,55 +49,59 @@ public class ClienteDAO extends GenericDAO implements Cloneable {
             statement.setString(3, cliente.getSexo());
             statement.setDate(4, new java.sql.Date(cliente.getNascimento().getTime()));
 
-            statement.executeQuery();
+            statement.executeUpdate();
 
             statement.close();
-
+            conn.close();
+            return 0;
 
         } catch(SQLException e){
-            throw new RuntimeException(e);
+            return Erros.erro(e);
         }
     }
 
-    public void update(Cliente cliente){
-//        try {
-//            Connection conn = this.getConnection();
-//            //ResultSet resultSet;
-//
-//            String sqlUpdate = "UPDATE Cliente SET telefone = ?, sexo = ?, nascimento = ? WHERE cliente.cpf = ?";
-//
-//            PreparedStatement statement = conn.prepareStatement(sqlUpdate);
-//            statement.setString(1, cliente.getTelefone());
-//            statement.setString(2, cliente.getSexo());
-//            statement.setDate(3, new java.sql.Date(cliente.getNascimento().getTime()));
-//            statement.setString(4, cliente.getCpf());
-//
-//            statement.executeQuery();
-//
-//            statement.close();
-//
-//        } catch(SQLException e){
-//            throw new RuntimeException(e);
-//        }
+    public int update(String telefone, String sexo, java.util.Date nascimento, String cpf){
+        Cliente cli = new Cliente(cpf, telefone, sexo, nascimento);
+        return update(cli);
     }
 
-    public void delete(Cliente cliente){
-//        try {
-//            Connection conn = this.getConnection();
-//            //ResultSet resultSet;
-//
-//            String sqlDelete = "DELETE Cliente WHERE cpf = ?";
-//
-//            PreparedStatement stantement = conn.prepareStatement(sqlDelete);
-//            stantement.setString(1, cliente.getCpf());
-//
-//            stantement.executeQuery();
-//        }catch(SQLException e){
-//            throw new RuntimeException(e);
-//        }
+    public int update(Cliente cliente){
+        try {
+            Connection conn = this.getConnection();
+            String sqlUpdate = "UPDATE Cliente cliente SET telefone = ?, sexo = ?, nascimento = ? WHERE cliente.cpf = ?";
+
+            PreparedStatement statement = conn.prepareStatement(sqlUpdate);
+            statement.setString(1, cliente.getTelefone());
+            statement.setString(2, cliente.getSexo());
+            statement.setDate(3, new java.sql.Date(cliente.getNascimento().getTime()));
+            statement.setString(4, cliente.getCpf());
+
+            statement.executeUpdate();
+            statement.close();
+            conn.close();
+            return 0;
+        } catch(SQLException e){
+            return Erros.erro(e);
+        }
     }
 
-    //@Override
+    public int delete(String clicpf){
+        try {
+            Connection conn = this.getConnection();
+
+            String sqlDelete = "DELETE FROM  Cliente WHERE cpf = ?";
+
+            PreparedStatement stantement = conn.prepareStatement(sqlDelete);
+            stantement.setString(1, clicpf);
+
+            stantement.executeUpdate();
+            stantement.close();
+            conn.close();
+            return 0;
+        }catch(SQLException e){
+            return Erros.erro(e);
+        }
+    }
     public Cliente clone(Cliente cli){
         Cliente novoCli = new  Cliente();
         novoCli.setCpf(cli.getCpf());
@@ -128,7 +124,6 @@ public class ClienteDAO extends GenericDAO implements Cloneable {
             PreparedStatement statement = conn.prepareStatement(sqlSelect);
             statement.setString(1, cpfReceber);
             resultSet = statement.executeQuery();
-            System.out.println("Otimos meios de debug");
             if(resultSet.next()){
                 String cpf = resultSet.getString("cpf");
                 String telefone = resultSet.getString("telefone");
@@ -153,4 +148,12 @@ public class ClienteDAO extends GenericDAO implements Cloneable {
     }
 
 
+    @Override
+    public ClienteDAO clone() {
+        try {
+            return (ClienteDAO) super.clone();
+        } catch (CloneNotSupportedException e) {
+            throw new AssertionError();
+        }
+    }
 }

@@ -25,6 +25,9 @@
     <c:when test = "${requestScope.erro == 4}">
         Sua Sessão como Cliente está inválida.
     </c:when>
+    <c:when test = "${requestScope.erro == 5}">
+        Sua Sessão como Adm está inválida.
+    </c:when>
 
     <c:when test = "${requestScope.erro == 404}">
         Requisição mal formada, por favor contate um adm.
