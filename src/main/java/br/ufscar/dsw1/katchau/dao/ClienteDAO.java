@@ -141,7 +141,6 @@ public class ClienteDAO extends GenericDAO implements Cloneable {
         } catch(SQLException e){
             throw new RuntimeException(e);
         }
-        //cli = clone(cli1);
 
         return cli;
 

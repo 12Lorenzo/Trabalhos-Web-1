@@ -6,7 +6,7 @@
 <head>
     <title>Title</title>
 </head>
-<h1>Erros</h1>
+<h1>Erros ${requestScope.erro}</h1>
 <c:choose>
 
     <c:when test = "${requestScope.erro == 0}">
@@ -28,8 +28,14 @@
     <c:when test = "${requestScope.erro == 5}">
         Sua Sessão como Adm está inválida.
     </c:when>
+    <c:when test = "${requestScope.erro == 6}">
+        Um objeto com esse codigo já estava inserido no banco de dados.
+    </c:when>
+    <c:when test = "${requestScope.erro == 7}">
+        O objeto com esse codigo não existe.
+    </c:when>
 
-    <c:when test = "${requestScope.erro == 404}">
+    <c:when test = "${requestScope.erro == 400}">
         Requisição mal formada, por favor contate um adm.
     </c:when>
 

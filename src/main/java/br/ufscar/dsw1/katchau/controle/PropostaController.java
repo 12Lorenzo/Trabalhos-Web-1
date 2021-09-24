@@ -45,7 +45,7 @@ public class PropostaController extends HttpServlet {
             id = Long.parseLong(id_str);
             form(request, response);
         }catch (NumberFormatException e){
-            request.setAttribute("erro", 404);
+            request.setAttribute("erro", 400);
             RequestDispatcher dispatcher = request.getRequestDispatcher("/logado/adm/erros.jsp");
             dispatcher.forward(request, response);
         }
@@ -80,7 +80,7 @@ public class PropostaController extends HttpServlet {
             request.setAttribute("erro", result);
 
         }catch (NumberFormatException e){
-            request.setAttribute("erro", 404);
+            request.setAttribute("erro", 400);
         }
 
         RequestDispatcher dispatcher = request.getRequestDispatcher("/logado/adm/erros.jsp");
