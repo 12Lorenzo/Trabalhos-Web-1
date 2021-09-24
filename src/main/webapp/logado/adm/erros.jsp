@@ -6,11 +6,14 @@
 <head>
     <title>Title</title>
 </head>
-<h1>Erros ${requestScope.erro}</h1>
+<c:if test="${requestScope.erro != 0}">
+<h1>Erro ${requestScope.erro}</h1>
+</c:if>
+<br>
 <c:choose>
 
     <c:when test = "${requestScope.erro == 0}">
-        A operação foi bem sucedida.
+        <h1>A operação foi bem sucedida.</h1>
     </c:when>
 
     <c:when test = "${requestScope.erro == 1}">
@@ -42,6 +45,8 @@
     <c:otherwise>
     </c:otherwise>
 </c:choose>
+<br>
+<br>
 <br>
 <button class="btn" onclick="window.location.href='${pageContext.request.contextPath}'">Voltar</button>
 

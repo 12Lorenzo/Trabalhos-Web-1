@@ -29,6 +29,12 @@
     <c:if test="${sessionScope.user.papel == 3}">
         <a href="${pageContext.request.contextPath.concat('/painelCliente') }">Meu Painel</a>
     </c:if>
+    <c:if test="${sessionScope.user.papel == 2}">
+        <a href="${pageContext.request.contextPath.concat('/painel') }">Meu Painel</a>
+    </c:if>
+    <c:if test="${sessionScope.user.papel == 1}">
+        <a href="${pageContext.request.contextPath.concat('/adm') }">Meu Painel</a>
+    </c:if>
 </c:if>
 <input type='hidden' name='${boo}' value='${boo}' id='propor'/>
 <form name='form'>

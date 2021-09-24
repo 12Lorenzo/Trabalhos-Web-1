@@ -3,6 +3,7 @@ package br.ufscar.dsw1.katchau.controle;
 //Faz as operações.
 
 import br.ufscar.dsw1.katchau.dao.ClienteDAO;
+import br.ufscar.dsw1.katchau.dao.UsuarioDAO;
 import br.ufscar.dsw1.katchau.entidade.Cliente;
 import br.ufscar.dsw1.katchau.entidade.Usuario;
 
@@ -22,9 +23,10 @@ import java.util.List;
 @WebServlet(urlPatterns = "/cliente/*")
 public class ClienteController extends HttpServlet {
     private ClienteDAO dao;
+    private UsuarioDAO usrDao;
 
     @Override
-    public void init() { dao = new ClienteDAO(); }
+    public void init() { dao = new ClienteDAO();usrDao = new UsuarioDAO();}
 
 
     @Override
@@ -37,10 +39,12 @@ public class ClienteController extends HttpServlet {
             switch (action){
                 case "put":
                 case "delete":
+                    Usuario usr = usrDao.read(parsing[parsing.length-1]);
                     Cliente cli = dao.retornaCli(parsing[parsing.length-1]);
-                    if (cli != null){
+                    if (cli != null && usr != null){
                         request.setAttribute("formMethod", action);
                         request.setAttribute("cliente", cli);
+                        request.setAttribute("cliente_usr", usr);
                         RequestDispatcher dispatcher = request.getRequestDispatcher("/logado/adm/formCliente.jsp");
                         dispatcher.forward(request, response);
                     }
@@ -83,7 +87,7 @@ public class ClienteController extends HttpServlet {
         String[] parsing = req.getRequestURI().split("/");
         String action;
         if (parsing.length > 2){
-            action = parsing[parsing.length - 1];
+            action = parsing[parsing.length - 2];
             if (action.equals("put")){
                 doPut(req,resp);
                 return;
@@ -94,16 +98,23 @@ public class ClienteController extends HttpServlet {
         }
 
 
+        System.out.println("estou fazendo post");
         Cliente cli = organizar(req);
+        Usuario usr = organizar_usr(req);
         int result;
-        if (cli == null){
+
+        if (cli == null || usr == null){
             result = 400;
         }else {
+            Usuario teste_usr = usrDao.read(cli.getCpf());
             Cliente teste = dao.retornaCli(cli.getCpf());
-            if (teste != null)
+            if (teste != null || teste_usr != null)
                 result = 6;
-            else
-                result = dao.insert(cli);
+            else{
+                result = usrDao.insert(usr);
+                if (result == 0)
+                    result = dao.insert(cli);
+            }
         }
 
         req.setAttribute("erro", result);
@@ -114,13 +125,17 @@ public class ClienteController extends HttpServlet {
     @Override
     protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         Cliente cli = organizar(req);
+        Usuario usr = organizar_usr(req);
+
+        System.out.println("estou fazendo delete");
         int result;
-        if (cli == null){
+        if (cli == null || usr == null){
             result = 400;
         }else {
+            Usuario teste_usr = usrDao.read(cli.getCpf());
             Cliente teste = dao.retornaCli(cli.getCpf());
-            if (teste != null)
-                result = dao.delete(cli.getCpf());
+            if (teste != null && teste_usr != null)
+                result = usrDao.delete(cli.getCpf());
             else
                 result = 7;
         }
@@ -134,13 +149,21 @@ public class ClienteController extends HttpServlet {
     @Override
     protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         Cliente cli = organizar(req);
+        Usuario usr = organizar_usr(req);
+        System.out.println("estou fazendo put");
+        String[] parsing = req.getRequestURI().split("/");
         int result;
-        if (cli == null){
+        if (cli == null || usr == null){
             result = 400;
         }else {
-            Cliente teste = dao.retornaCli(cli.getCpf());
-            if (teste != null)
-                result  = dao.update(cli);
+
+            Usuario teste_usr = usrDao.read(parsing[parsing.length - 1]);
+            Cliente teste = dao.retornaCli(parsing[parsing.length - 1]);
+            if (teste != null && teste_usr != null) {
+                result = usrDao.update(parsing[parsing.length - 1], usr);
+                if(result == 0)
+                    result = dao.update(cli);
+            }
             else
                 result = 7;
         }
@@ -166,13 +189,22 @@ public class ClienteController extends HttpServlet {
             return  null;
         }
 
-        System.out.println(cpf);
-        System.out.println(telefone);
-        System.out.println(sexo);
-        System.out.println(nascimento);
         if (cpf == null || telefone == null || sexo == null || nascimento == null)
             return null;
 
         return new Cliente(cpf,telefone,sexo,date1);
+    }
+
+    private Usuario organizar_usr(HttpServletRequest req) {
+
+        String cpf = (String) req.getParameter("cpf");
+        String email = (String) req.getParameter("email");
+        String senha = (String) req.getParameter("senha");
+        String nome = (String) req.getParameter("nome");
+
+        if (cpf == null || email == null || senha == null || nome == null)
+            return null;
+
+        return new Usuario(cpf,email, senha,3,nome);
     }
 }

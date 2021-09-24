@@ -10,8 +10,6 @@
 
 <h1>Lista de Usuários</h1>
 
-<a href="./usuario/?method=post">adicionar novo</a>
-
 <table border="1">
     <tr>
 
@@ -24,7 +22,7 @@
     </tr>
 
     <c:forEach var="usuario" items="${listaUsuarios}" varStatus="loop">
-
+    <tr>
         <td>
             <c:out value="${usuario.codigo}"/>
         </td>
@@ -33,13 +31,6 @@
         <td><c:out value="${usuario.papel}"/></td>
         <td><c:out value="${usuario.nome}"/></td>
 
-        <td> <a href="./usuario/?codigo=${usuario.codigo}&method=update">editar</a>
-        </td>
-
-        <td> <a href="./usuario/?codigo=${usuario.codigo}&method=delete">deletar</a>
-        </td>
-
-        </td>
             </tr>
     </c:forEach>
 
@@ -48,6 +39,8 @@
 
 <h1>Lista de Clientes</h1><br>
 <%--listaClientes--%>
+
+<td><a href="${pageContext.request.contextPath}/cliente/post/*">Cadastrar cliente</a></td>
 <table border="1">
     <tr>
 
@@ -58,15 +51,15 @@
         <td>nacimento</td>
     </tr>
     <c:forEach var="cliente" items="${listaClientes}">
-
+        <tr>
         <td>
             <c:out value="${cliente.cpf}"/>
         </td>
         <td><c:out value="${cliente.telefone}"/></td>
         <td><c:out value="${cliente.sexo}"/></td>
         <td><c:out value="${cliente.nascimento}"/></td>
-
-
+        <td><a href="${pageContext.request.contextPath}/cliente/put/${cliente.cpf}">Editar cliente</a></td>
+        <td><a href="${pageContext.request.contextPath}/cliente/delete/${cliente.cpf}">Deletar cliente</a></td>
         </tr>
     </c:forEach>
 
@@ -113,7 +106,7 @@
         <td>valor</td>
     </tr>
     <c:forEach var="carro" items="${listaCarros}">
-
+        <tr>
         <td>
             <c:out value="${carro.id}"/>
         </td>
@@ -125,12 +118,6 @@
         <td><c:out value="${carro.ano}"/></td>
         <td><c:out value="${carro.km}"/></td>
         <td><c:out value="${carro.valor}"/></td>
-        <td> <a href="./carros/?id=${carro.id}&method=update">editar</a>
-        </td>
-
-        <td> <a href="./carros/?id=${carro.id}&method=delete">deletar</a>
-        </td>
-        </td>
 
         </tr>
     </c:forEach>
