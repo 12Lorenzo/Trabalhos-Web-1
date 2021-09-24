@@ -107,4 +107,19 @@ public class PropostaController extends HttpServlet {
         RequestDispatcher dispatcher = request.getRequestDispatcher("/logado/adm/formProposta.jsp");
         dispatcher.forward(request, response);
     }
+
+    protected void aceitarRecusar(HttpServletRequest request, HttpServletResponse response, int op) throws ServletException, IOException{
+        if(op == 1) {
+            request.setCharacterEncoding("UTF-8");
+            request.setAttribute("formMethod", "post");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/logado/adm/formAceito.jsp");
+            dispatcher.forward(request, response);
+        } else{
+            request.setCharacterEncoding("UTF-8");
+            request.setAttribute("formMethod", "post");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/logado/adm/formRecusa.jsp");
+            dispatcher.forward(request, response);
+        }
+    }
+
 }
