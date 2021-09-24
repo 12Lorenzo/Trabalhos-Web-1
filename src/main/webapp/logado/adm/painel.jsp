@@ -95,7 +95,9 @@
 
 <h1>Lista de Carros</h1>
 <br>
+
 <a href="./carros/?method=post">adicionar novo</a><br>
+
 <table border="1">
     <tr>
 

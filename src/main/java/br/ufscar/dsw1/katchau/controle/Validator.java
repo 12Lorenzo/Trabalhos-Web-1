@@ -73,7 +73,7 @@ public class Validator extends HttpServlet {
             dispatcher.forward(request, response);
         } else{
             request.setAttribute("erro", "E-mail ou senha incorretos");
-            dispatcher = request.getRequestDispatcher("/login.jsp");
+            dispatcher = request.getRequestDispatcher("/login.jsp"); //Manda o usuário para outra pagina.
             dispatcher.forward(request, response);
         }
     }

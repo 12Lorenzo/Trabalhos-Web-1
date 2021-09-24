@@ -35,6 +35,7 @@ public class Carro {
     public Carro(Long id) {
         this.id = id;
     }
+
     public Carro(String cnpj,String placa,String modelo,String chassi,String descricao,int ano,float km,float valor){
         super();
         this.cnpj = cnpj;
@@ -47,6 +48,11 @@ public class Carro {
         this.valor = valor;
         this.imagens = new ArrayList<String>();
     }
+
+    public Carro(){
+        super();
+    }
+
     public Long getId() {
         return id;
     }

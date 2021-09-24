@@ -7,14 +7,14 @@
     <title>Title</title>
 </head>
 <body>
-<form action="${pageContext.request.contextPath}/carros/" method="${requestScope.formMethod}" enctype="multipart/form-data">
+<form action="${pageContext.request.contextPath}/carros/" method="post" enctype="multipart/form-data">
 
     <label for="placa">Placa:</label><br>
     <input type="text" id="placa" name="placa" value=""><br>
 
 
     <label for="modelo">Modelo:</label><br>
-    <input type="text" id="modelo" name="modelp" value=""><br>
+    <input type="text" id="modelo" name="modelo" value=""><br>
 
 
     <label for="chassi">Chassi:</label><br>
@@ -36,11 +36,9 @@
     <label for="valor">Valor:</label><br>
     <input type="number" id="valor" name="valor" value="" step="0.01"><br><br>
 
-
-
     <input type="file" name="imagem 1" multiple/><br>
 
-    <input type="submit" value="Submit"><br>
+    <input type="submit" value="Submit" ><br>
 
 
 </form>

@@ -3,8 +3,7 @@ package br.ufscar.dsw1.katchau.controle;
 //Faz as operações.
 
 import br.ufscar.dsw1.katchau.dao.CarroDAO;
-import br.ufscar.dsw1.katchau.entidade.Carro;
-import br.ufscar.dsw1.katchau.entidade.Usuario;
+import br.ufscar.dsw1.katchau.entidade.*;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -13,11 +12,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-
-@WebServlet(urlPatterns = "/carros/*")
+@WebServlet(name="Carros", urlPatterns = "/carros/*")
 public class CarroController extends HttpServlet {
     private CarroDAO dao;
 
@@ -59,5 +60,37 @@ public class CarroController extends HttpServlet {
         req.setCharacterEncoding("UTF-8");
         //todo criar um carro
 //        doGet(req,resp);
+        req.setAttribute("formMethod", "post");
+        criar(req, resp);
     }
+
+    private void criar (HttpServletRequest request, HttpServletResponse response) {
+        //RequestDispatcher dispatcher = request.getRequestDispatcher("/logado/adm/formCarro.jsp");
+        //dispatcher.forward(request, response);
+
+        try{
+            Loja loja = (Loja) request.getSession().getAttribute("loja");
+            if(loja != null) {
+                //cnpj, placa, modelo, chassi,  ano, km, descricao, valor
+                String cnpj = loja.getCnpj();
+                String placa = request.getParameter("placa");
+                String modelo = request.getParameter("modelo");
+                String chassi = request.getParameter("chassi");
+                int ano = Integer.parseInt(request.getParameter("ano"));
+                float km= Float.parseFloat(request.getParameter("km"));
+                String descricao = request.getParameter("descricao");
+                float valor = Float.parseFloat(request.getParameter("valor"));
+
+                Carro car = new Carro(cnpj, placa, modelo, chassi, descricao, ano, km, valor);
+                int recebeDao;
+                recebeDao = dao.insert(car);
+
+                System.out.println("Entrou para dar insert" + recebeDao);
+            }
+        } catch(RuntimeException e){
+            //throw new ServletException(2);
+            return; //TODO Resolver isso por favor.
+        }
+    }
+
 }

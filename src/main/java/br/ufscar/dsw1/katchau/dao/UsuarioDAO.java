@@ -14,6 +14,7 @@ import java.util.List;
 
 public class UsuarioDAO extends GenericDAO{
     public List<Usuario> getAll() {
+
         List<Usuario> listaUsuarios = new ArrayList<>();
         String sql1 = "SELECT * from Usuario";
         try {
@@ -37,6 +38,7 @@ public class UsuarioDAO extends GenericDAO{
             resultSet.close();
             statement.close();
             conn.close();
+
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

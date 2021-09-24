@@ -3,6 +3,8 @@ package br.ufscar.dsw1.katchau.dao;
 //São as chamadas sql.
 
 import br.ufscar.dsw1.katchau.entidade.Carro;
+import br.ufscar.dsw1.katchau.entidade.Erros;
+import br.ufscar.dsw1.katchau.entidade.Usuario;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -12,17 +14,38 @@ public class CarroDAO extends GenericDAO{
 
     public List<Carro> getAll() {
 
-        List<Carro> listaCarros;
+        List<Carro> listaCarros = new ArrayList<>();
         String sql1 = "SELECT * from Carro";
         try {
             Connection conn = this.getConnection();
             ResultSet resultSet;
             PreparedStatement statement = conn.prepareStatement(sql1);
             resultSet = statement.executeQuery();
+
+            /*
+            Não funciona
+            while (resultSet.next()) {
+
+                //String id = resultSet.getString("id");
+                String cnpj = resultSet.getString("cnpj");
+                String placa = resultSet.getString("placa");
+                String modelo = resultSet.getString("modelo");
+                String chassi = resultSet.getString("chassi");
+                int ano = resultSet.getInt("ano");
+                float km = resultSet.getFloat("km");
+                String desc = resultSet.getString("descricao");
+                float val = resultSet.getFloat("valor");
+                Carro car = new Carro(cnpj, placa,modelo,chassi, desc, ano,km, val);
+
+                listaCarros.add(car);
+            }
+            */
             listaCarros = getFromResult(resultSet);
+
             resultSet.close();
             statement.close();
             conn.close();
+
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -99,7 +122,6 @@ public class CarroDAO extends GenericDAO{
         return listaCarros;
     }
 
-
     private List<Carro> getFromResult(ResultSet resultSet){
         List<Carro> listaCarros = new ArrayList<>();
         try{
@@ -123,4 +145,34 @@ public class CarroDAO extends GenericDAO{
         }
         return listaCarros;
     }
+
+
+    public int insert(Carro carro){
+        try {
+            Connection conn = this.getConnection();
+
+            String sqlInsert = "INSERT INTO Carro(cnpj, placa, modelo, chassi,  ano, km, descricao, valor) VALUES(?, ?, ?, ?, ?, ?, ?, ?)";
+
+            PreparedStatement statement = conn.prepareStatement(sqlInsert);
+
+            statement.setString(1, carro.getCnpj());
+            statement.setString(2, carro.getPlaca());
+            statement.setString(3, carro.getModelo());
+            statement.setString(4, carro.getChassi());
+            statement.setInt(5, carro.getAno());
+            statement.setFloat(6, carro.getKm());
+            statement.setString(7, carro.getDescricao());
+            statement.setFloat(8, carro.getValor());
+
+            statement.executeUpdate();
+
+            statement.close();
+            conn.close();
+            return 0;
+
+        } catch(SQLException e){
+            return Erros.erro(e);
+        }
+    }
+
 }

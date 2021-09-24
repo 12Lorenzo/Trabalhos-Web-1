@@ -106,8 +106,6 @@ public class AdmController extends HttpServlet {
     private void atualizar(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         RequestDispatcher dispatcher = request.getRequestDispatcher("/logado/adm/formUsuario.jsp");
         dispatcher.forward(request, response);
-
-
     }
 
     private void criar (HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
