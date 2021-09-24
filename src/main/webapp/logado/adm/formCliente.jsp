@@ -9,11 +9,27 @@
 </head>
 <body>
 <%--Cliente(cpf, telefone, sexo, nascimento)--%>
-<form action="${pageContext.request.contextPath}/cliente/${requestScope.get("formMethod")}" method="post">
+<form action="${pageContext.request.contextPath}/cliente/${requestScope.get("formMethod")}/${requestScope.cliente_usr == null ? "*":requestScope.cliente_usr.codigo}" method="post">
     <label for="cpf">CPF:</label><br>
-    <input class="inCampo" <%= request.getAttribute("formMethod").equals("post") ? "":"readonly=\"readonly\"" %>
+    <input class="inCampo" <%= request.getAttribute("formMethod").equals("delete") ? "readonly=\"readonly\"" :""%>
             type="text" id="cpf" name="cpf" value=
             "${(requestScope.cliente == null || requestScope.formMethod == "post"?"":requestScope.cliente.cpf)}"><br>
+
+    <label for="nome">Nome:</label><br>
+    <input class="inCampo" <%= request.getAttribute("formMethod").equals("delete") ? "readonly=\"readonly\"" :""%>
+           type="text" id="nome" name="nome" value=
+                   "${(requestScope.cliente_usr == null || requestScope.formMethod == "post"?"":requestScope.cliente_usr.nome)}"><br>
+
+    <label for="nome">Email:</label><br>
+    <input class="inCampo" <%= request.getAttribute("formMethod").equals("delete") ? "readonly=\"readonly\"" :""%>
+           type="email" id="email" name="email" value=
+                   "${(requestScope.cliente_usr == null || requestScope.formMethod == "post"?"":requestScope.cliente_usr.email)}"><br>
+    <label for="nome">Senha:</label><br>
+    <input class="inCampo" <%= request.getAttribute("formMethod").equals("delete") ? "readonly=\"readonly\"" :""%>
+           type="password" id="senha" name="senha" value=
+                   "${(requestScope.cliente_usr == null || requestScope.formMethod == "post"?"":requestScope.cliente_usr.senha)}"><br>
+
+
     <label for="telefone">telefone:</label><br>
 
     <input <%= request.getAttribute("formMethod").equals("delete")? "readonly=\"readonly\"":"" %>
