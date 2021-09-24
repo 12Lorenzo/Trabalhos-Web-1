@@ -17,6 +17,8 @@
     <input type="text" name="link" placeholder="link da reunião"><br>
     <input type="text" name="mensagem" placeholder="mensagem"><br>
 
+    <input type="submit" value="Enviar" ><br>
+
 </form>
 </body>
 </html>

@@ -14,7 +14,10 @@
 
 <form action="${pageContext.request.contextPath}/decisao/recusa" method="post">
     <input type="number" name="valor" placeholder="Valor da contra proposta"><br>
-    <input type="text" name="descricao" placeholder="Descricao da contra proposta">
+    <input type="text" name="descricao" placeholder="Descricao da contra proposta"><br>
+
+    <input type="submit" value="Enviar" ><br>
+
 </form>
 </body>
 </html>
