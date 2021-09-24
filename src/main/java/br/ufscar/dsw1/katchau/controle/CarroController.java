@@ -170,9 +170,6 @@ public class CarroController extends HttpServlet {
                     }
                 }
 
-
-
-
                 cnpj = loja.getCnpj();
                 request.getParameter("placa");
                 request.getParameter("modelo");

@@ -14,11 +14,15 @@
     <input type="number" step="0.01" id="valor" name="valor" value="0"><br>
 
     <label for="condPag">CondPag:</label><br>
-    <input type="text" id="condPag" name="cond" value=""
+    <input type="text" id="condPag" name="cond" value="">
 
-    ><br>
 
-    <input type="submit" value="Submit"><br>
+
+    <br>
+
+    <input type="submit" value="Submit">
+
+    <br>
 </form>
 
 </body>

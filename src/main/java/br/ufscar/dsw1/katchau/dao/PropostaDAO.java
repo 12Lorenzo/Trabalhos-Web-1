@@ -69,7 +69,7 @@ public class PropostaDAO extends GenericDAO {
             Connection conn = this.getConnection();
             ResultSet resultSet;
             PreparedStatement statement = conn.prepareStatement(sql1);
-            statement.setString(1,cnpj);
+            statement.setString(1, cnpj);
             resultSet = statement.executeQuery();
             listaPropostas = getFromResult(resultSet);
             resultSet.close();
@@ -82,7 +82,7 @@ public class PropostaDAO extends GenericDAO {
         return listaPropostas;
     }
 
-    private List<Proposta> getFromResult(ResultSet resultSet){
+    private List<Proposta> getFromResult(ResultSet resultSet) {
         List<Proposta> listaPropostas = new ArrayList<>();
         try {
             while (resultSet.next()) {
@@ -100,40 +100,80 @@ public class PropostaDAO extends GenericDAO {
                 listaPropostas.add(proposta);
 
             }
-        }catch (SQLException throwables) {
+        } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
         return listaPropostas;
     }
 
-    public int insert(Cliente cliente, Carro carro, Float valor, String proposta){
-        if(cliente == null || carro == null || valor == null || proposta == null){
-                return 400;
+    public int insert(Cliente cliente, Carro carro, Float valor, String proposta) {
+        if (cliente == null || carro == null || valor == null || proposta == null) {
+            return 400;
         }
+        try {
+            Connection conn = this.getConnection();
+            String sqlInsert = "INSERT INTO Proposta(status, data, val, condPag, cnpj, cpf, carro_id) VALUES(?, ?, ?, ?, ?, ?, ?)";
+            long millis = System.currentTimeMillis();
+            java.sql.Date date = new java.sql.Date(millis);
+            PreparedStatement statement = conn.prepareStatement(sqlInsert);
+            statement.setInt(1, 0);
+            statement.setDate(2, date); //data de hoje
+            statement.setFloat(3, valor);
+            statement.setString(4, proposta);
+            statement.setString(5, carro.getCnpj());
+            statement.setString(6, cliente.getCpf());
+            statement.setLong(7, carro.getId());
+
+            statement.executeUpdate();
+
+            statement.close();
+
+
+        } catch (SQLException e) {
+            System.out.println(e);
+            return 3;
+        }
+        return 0;
+    }
+
+
+    public int aceitarRecusar(Proposta prop, int op){
+        if(op == 1){
             try {
                 Connection conn = this.getConnection();
-                String sqlInsert = "INSERT INTO Proposta(status, data, val, condPag, cnpj, cpf, carro_id) VALUES(?, ?, ?, ?, ?, ?, ?)";
-                long millis = System.currentTimeMillis();
-                java.sql.Date date = new java.sql.Date(millis);
-                PreparedStatement statement = conn.prepareStatement(sqlInsert);
-                statement.setInt(1, 0);
-                statement.setDate(2, date); //data de hoje
-                statement.setFloat(3, valor);
-                statement.setString(4, proposta);
-                statement.setString(5, carro.getCnpj());
-                statement.setString(6, cliente.getCpf());
-                statement.setLong(7, carro.getId());
+                String sqlUpdate = "UPDATE Proposta SET status = 1 WHERE Proposta.id = ?";
+
+                PreparedStatement statement = conn.prepareStatement(sqlUpdate);
+
+                statement.setLong(1, prop.getId());
 
                 statement.executeUpdate();
-
                 statement.close();
 
-
-            } catch(SQLException e){
-                System.out.println(e);
+            } catch (SQLException e) {
+                //throwables.printStackTrace();
                 return 3;
             }
-            return 0;
+
+        }else{
+            try {
+                Connection conn = this.getConnection();
+                String sqlUpdate = "UPDATE Proposta SET status = 2 WHERE Proposta.id = ?";
+
+                PreparedStatement statement = conn.prepareStatement(sqlUpdate);
+
+                statement.setLong(1, prop.getId());
+
+                statement.executeUpdate();
+                statement.close();
+
+            } catch (SQLException e) {
+                //throwables.printStackTrace();
+                return 3;
+            }
         }
+        return 1;
+    }
+
 
 }
