@@ -59,38 +59,56 @@ public class CarroController extends HttpServlet {
 
         req.setCharacterEncoding("UTF-8");
         //todo criar um carro
-//        doGet(req,resp);
         req.setAttribute("formMethod", "post");
         criar(req, resp);
     }
 
-    private void criar (HttpServletRequest request, HttpServletResponse response) {
+    private void criar (HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         //RequestDispatcher dispatcher = request.getRequestDispatcher("/logado/adm/formCarro.jsp");
         //dispatcher.forward(request, response);
-
+        int result = 0;
         try{
             Loja loja = (Loja) request.getSession().getAttribute("loja");
+            System.out.println("loja = "+loja);
             if(loja != null) {
                 //cnpj, placa, modelo, chassi,  ano, km, descricao, valor
                 String cnpj = loja.getCnpj();
                 String placa = request.getParameter("placa");
                 String modelo = request.getParameter("modelo");
                 String chassi = request.getParameter("chassi");
+                System.out.println("tamo não");
+
+                System.out.println(request.getParameter("ano"));
+                System.out.println(request.getParameter("km"));
+                System.out.println(request.getParameter("valor"));
+                System.out.println(request.getAttributeNames());
+
+                String descricao = request.getParameter("descricao");
                 int ano = Integer.parseInt(request.getParameter("ano"));
                 float km= Float.parseFloat(request.getParameter("km"));
-                String descricao = request.getParameter("descricao");
                 float valor = Float.parseFloat(request.getParameter("valor"));
-
+                System.out.println("tamo aq");
                 Carro car = new Carro(cnpj, placa, modelo, chassi, descricao, ano, km, valor);
-                int recebeDao;
-                recebeDao = dao.insert(car);
+                long id_carro;
+                id_carro = dao.insert(car);
+                if (id_carro == -1){
+                    result = 6;
+                }
 
-                System.out.println("Entrou para dar insert" + recebeDao);
+                //todo upload das imagens
+
+
+
+                System.out.println("Entrou para dar insert " + id_carro);
             }
         } catch(RuntimeException e){
             //throw new ServletException(2);
-            return; //TODO Resolver isso por favor.
+            System.out.println("erro :" + e);
+            result = 400;
         }
+        request.setAttribute("erro", result);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/logado/adm/erros.jsp");
+        dispatcher.forward(request, response);
     }
 
 }

@@ -3,8 +3,6 @@ package br.ufscar.dsw1.katchau.dao;
 //São as chamadas sql.
 
 import br.ufscar.dsw1.katchau.entidade.Carro;
-import br.ufscar.dsw1.katchau.entidade.Erros;
-import br.ufscar.dsw1.katchau.entidade.Usuario;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -147,13 +145,13 @@ public class CarroDAO extends GenericDAO{
     }
 
 
-    public int insert(Carro carro){
+    public long insert(Carro carro){
         try {
             Connection conn = this.getConnection();
 
             String sqlInsert = "INSERT INTO Carro(cnpj, placa, modelo, chassi,  ano, km, descricao, valor) VALUES(?, ?, ?, ?, ?, ?, ?, ?)";
 
-            PreparedStatement statement = conn.prepareStatement(sqlInsert);
+            PreparedStatement statement = conn.prepareStatement(sqlInsert, new String[] {"id"});
 
             statement.setString(1, carro.getCnpj());
             statement.setString(2, carro.getPlaca());
@@ -164,14 +162,19 @@ public class CarroDAO extends GenericDAO{
             statement.setString(7, carro.getDescricao());
             statement.setFloat(8, carro.getValor());
 
-            statement.executeUpdate();
+            long id_feito = -1;
+            int affectedRows = statement.executeUpdate();
+            try{
+                ResultSet generatedKeys = statement.getGeneratedKeys();
+                if (generatedKeys.next())
+                    id_feito = (long) generatedKeys.getInt(1);
 
-            statement.close();
-            conn.close();
-            return 0;
-
+            } catch (SQLException throwables) {
+                return (long) -1;
+            }
+            return id_feito;
         } catch(SQLException e){
-            return Erros.erro(e);
+            return (long) -1;
         }
     }
 
