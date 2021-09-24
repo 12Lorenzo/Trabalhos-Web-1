@@ -7,7 +7,7 @@
     <title>Title</title>
 </head>
 <body>
-<form action="${pageContext.request.contextPath}/carros/" method="post">
+<form action="${pageContext.request.contextPath}/carros/" method="post" enctype= "multipart/form-data">
 
     <label for="placa">Placa:</label><br>
     <input type="text" id="placa" name="placa" value=""><br>

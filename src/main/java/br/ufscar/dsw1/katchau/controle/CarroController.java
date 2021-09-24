@@ -5,6 +5,7 @@ package br.ufscar.dsw1.katchau.controle;
 import br.ufscar.dsw1.katchau.dao.CarroDAO;
 import br.ufscar.dsw1.katchau.entidade.*;
 import org.apache.commons.fileupload.FileItem;
+import org.apache.commons.fileupload.FileUploadException;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
@@ -70,9 +71,9 @@ public class CarroController extends HttpServlet {
         criar(req, resp);
     }
 
-    protected void mandarmagem(HttpServletRequest request, HttpServletResponse response, long id) throws ServletException, IOException {
+    protected int mandarmagem( List<FileItem> formImg, HttpServletRequest request, HttpServletResponse response, long id) throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
-
+        int message = 0;
 
         if (ServletFileUpload.isMultipartContent(request)) {
 
@@ -91,11 +92,13 @@ public class CarroController extends HttpServlet {
             }
 
             try {
-                List<FileItem> formItems = upload.parseRequest(request);
-                if (formItems != null && formItems.size() > 0) {
-                    for (FileItem item : formItems) {
+                System.out.println("formItens " + formImg);
+                System.out.println("formItenssize " + formImg.size());
+                if (formImg != null && formImg.size() > 0) {
+                    for (FileItem item : formImg) {
                         if (!item.isFormField()) {
                             String fileName = new File(item.getName()).getName();
+                            System.out.println("oi rsrs");
                             String filePath = uploadPath + File.separator + fileName;
                             File storeFile = new File(filePath);
                             item.write(storeFile);
@@ -105,9 +108,11 @@ public class CarroController extends HttpServlet {
                 }
             } catch (Exception ex) {
                 request.getSession().setAttribute("message", "There was an error: " + ex.getMessage());
+                message = 6;
             }
-            response.sendRedirect(request.getContextPath());
+
         }
+        return message;
     }
 
     private void criar (HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -119,21 +124,65 @@ public class CarroController extends HttpServlet {
             System.out.println("loja = "+loja);
             if(loja != null) {
                 //cnpj, placa, modelo, chassi,  ano, km, descricao, valor
-                String cnpj = loja.getCnpj();
-                String placa = request.getParameter("placa");
-                String modelo = request.getParameter("modelo");
-                String chassi = request.getParameter("chassi");
+
+                String cnpj ="", placa="", modelo="", chassi="";
+
+                String ano_str="", km_str="", valor_str="", descricao="";
+
+                DiskFileItemFactory factory = new DiskFileItemFactory();
+                factory.setSizeThreshold(MEMORY_THRESHOLD);
+                factory.setRepository(new File(System.getProperty("java.io.tmpdir")));
+
+                ServletFileUpload upload = new ServletFileUpload(factory);
+                List<FileItem> formItems = upload.parseRequest(request);
+                List<FileItem> formImg = new ArrayList<FileItem>();
+                if (formItems != null && formItems.size() > 0) {
+                    for (FileItem item : formItems) {
+                        if (item.isFormField()) {
+                            String fieldname = item.getFieldName();
+                            String fieldvalue = item.getString();
+                            switch (fieldname){
+                                case  "placa":
+                                    placa = fieldvalue;
+                                    break;
+                                case "modelo":
+                                    modelo = fieldvalue;
+                                    break;
+                                case "chassi":
+                                    chassi = fieldvalue;
+                                    break;
+                                case "descricao":
+                                    descricao = fieldvalue;
+                                    break;
+                                case "ano":
+                                    ano_str = fieldvalue;
+                                    break;
+                                case "km":
+                                    km_str = fieldvalue;
+                                    break;
+                                case "valor":
+                                    valor_str = fieldvalue;
+                                    break;
+                            }
+                        }else {
+                            formImg.add(item);
+                        }
+                    }
+                }
+
+
+
+
+                cnpj = loja.getCnpj();
+                request.getParameter("placa");
+                request.getParameter("modelo");
+                request.getParameter("chassi");
                 System.out.println("tamo não");
 
-                System.out.println(request.getParameter("ano"));
-                System.out.println(request.getParameter("km"));
-                System.out.println(request.getParameter("valor"));
-                System.out.println(request.getAttributeNames());
 
-                String descricao = request.getParameter("descricao");
-                int ano = Integer.parseInt(request.getParameter("ano"));
-                float km= Float.parseFloat(request.getParameter("km"));
-                float valor = Float.parseFloat(request.getParameter("valor"));
+                int ano = Integer.parseInt(ano_str);
+                float km= Float.parseFloat(km_str);
+                float valor = Float.parseFloat(valor_str);
                 System.out.println("tamo aq");
                 Carro car = new Carro(cnpj, placa, modelo, chassi, descricao, ano, km, valor);
                 long id_carro;
@@ -143,12 +192,12 @@ public class CarroController extends HttpServlet {
                 }
 
                 //todo upload das imagens
-                mandarmagem(request, response, id_carro);
+                result = mandarmagem(formImg, request, response, id_carro);
 
 
                 System.out.println("Entrou para dar insert " + id_carro);
             }
-        } catch(RuntimeException e){
+        } catch(RuntimeException | FileUploadException e){
             //throw new ServletException(2);
             System.out.println("erro :" + e);
             result = 400;

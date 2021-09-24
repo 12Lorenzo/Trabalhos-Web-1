@@ -17,27 +17,27 @@
 <%--<%= request.setAttribute("formMethod", (request.getAttribute("formMethod") == null? "post": request.getAttribute("formMethod"))) %>--%>
 <form action="" method="${requestScope.formMethod}">
     <label for="codigo">CPF/CNPJ:</label><br>
-    <input ${requestScope.formMethod == "post"? "":"disabled"}
+    <input ${requestScope.formMethod == "post"? "":"readonly=\"readonly\""}
             type="text" id="codigo" name="codigo" value=
-            "${(requestScope.usuario == null || requestScope.formMethod == "post"?"":requestScope.usuario.codigo)}"><br>
+            "${(requestScope.usuario == null || requestScope.formMethod.equals("post")?"":requestScope.usuario.codigo)}"><br>
 
     <label for="email">E-mail:</label><br>
-    <input ${requestScope.formMethod == "delete" ? "disabled":""}
+    <input ${requestScope.formMethod.equals("delete") ? "readonly=\"readonly\"":""}
             type="email" id="email" name="email" value=
-            "${(requestScope.usuario == null || requestScope.formMethod == "post"?"":requestScope.usuario.email)}"><br>
+            "${(requestScope.usuario == null || requestScope.formMethod.equals("post")?"":requestScope.usuario.email)}"><br>
 
     <label for="nome">Nome:</label><br>
-    <input ${requestScope.formMethod == "delete" ? "disabled":""}
+    <input ${requestScope.formMethod.equals("delete") ? "readonly=\"readonly\"":""}
             type="text" id="nome" name="nome" value=
-            "${(requestScope.usuario == null || requestScope.formMethod == "post"?"":requestScope.usuario.senha)}"><br>
+            "${(requestScope.usuario == null || requestScope.formMethod.equals("post")?"":requestScope.usuario.senha)}"><br>
 
     <label for="papel">Papel:</label><br>
-    <input ${requestScope.formMethod == "delete" ? "disabled":""}
+    <input ${requestScope.formMethod.equals("delete") ? "readonly=\"readonly\"":""}
             type="number" min=0 max=3 id="papel" name="papel" value="${requestScope.usuario == null ?"" :requestScope.usuario.papel}"><br>
 
     <label for="senha">Senha:</label><br>
-    <input ${requestScope.formMethod == "delete" ? "disabled":""}
-            type="text" id="senha" name="senha" value="${requestScope.formMethod == "post" || requestScope.usuario == null?"":requestScope.usuario.senha}"
+    <input ${requestScope.formMethod.equals("delete") ? "readonly=\"readonly\"":""}
+            type="text" id="senha" name="senha" value="${requestScope.formMethod.equals("post") || requestScope.usuario == null?"":requestScope.usuario.senha}"
 
     ><br>
 
