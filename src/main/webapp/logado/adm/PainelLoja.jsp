@@ -47,8 +47,8 @@
                 <td><c:out value="${proposta.data}"/></td>
                 <td><c:out value="${proposta.val}"/></td>
                 <td><c:out value="${proposta.condPag}"/></td>
-                <td><a href="${pageContext.request.contextPath}/decisao/aceito">ACEITAR</a></td>
-                <td><a href="${pageContext.request.contextPath}/decisao/recusa">RECUSAR</a>></td>
+                <td><a href="${pageContext.request.contextPath}/decisao/aceito/${proposta.id}">ACEITAR</a></td>
+                <td><a href="${pageContext.request.contextPath}/decisao/recusa/${proposta.id}">RECUSAR</a></td>
             </tr>
         </table>
     </c:forEach>

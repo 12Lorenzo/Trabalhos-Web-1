@@ -37,6 +37,30 @@ public class PropostaDAO extends GenericDAO {
         return listaPropostas;
     }
 
+    public Proposta read(Long id) {
+
+        List<Proposta> listaPropostas;
+
+        String sql1 = "SELECT * from Proposta p WHERE p.id = ?";
+        try {
+            Connection conn = this.getConnection();
+            ResultSet resultSet;
+            PreparedStatement statement = conn.prepareStatement(sql1);
+            statement.setLong(1, id);
+            resultSet = statement.executeQuery();
+            listaPropostas = getFromResult(resultSet);
+            if (listaPropostas.size() == 0)
+                return null;
+            resultSet.close();
+            statement.close();
+            conn.close();
+        } catch (SQLException e) {
+            return null;
+        }
+
+        return listaPropostas.get(0);
+    }
+
     public List<Proposta> getAll() {
 
         List<Proposta> listaPropostas;
@@ -149,13 +173,12 @@ public class PropostaDAO extends GenericDAO {
 
                 statement.executeUpdate();
                 statement.close();
-
+                return 0;
             } catch (SQLException e) {
-                //throwables.printStackTrace();
                 return 3;
             }
 
-        }else{
+        }else if(op == 2){
             try {
                 Connection conn = this.getConnection();
                 String sqlUpdate = "UPDATE Proposta SET status = 2 WHERE Proposta.id = ?";
@@ -166,9 +189,8 @@ public class PropostaDAO extends GenericDAO {
 
                 statement.executeUpdate();
                 statement.close();
-
+                return 0;
             } catch (SQLException e) {
-                //throwables.printStackTrace();
                 return 3;
             }
         }

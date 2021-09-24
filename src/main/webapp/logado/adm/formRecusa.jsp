@@ -12,7 +12,8 @@
 </head>
 <body>
 
-<form action="${pageContext.request.contextPath}/decisao/recusa" method="post">
+<form action="${pageContext.request.contextPath}/decisao/recusa/${requestScope.id}" method="post">
+    <input hidden type="number" name="id" value="${requestScope.id}">
     <input type="number" name="valor" placeholder="Valor da contra proposta"><br>
     <input type="text" name="descricao" placeholder="Descricao da contra proposta"><br>
 

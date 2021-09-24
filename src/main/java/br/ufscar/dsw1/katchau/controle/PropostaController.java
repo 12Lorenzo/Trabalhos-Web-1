@@ -43,6 +43,25 @@ public class PropostaController extends HttpServlet {
         Long id;
         try{
             id = Long.parseLong(id_str);
+            int result = 0;
+            Cliente cliente = (Cliente) request.getSession().getAttribute("cliente");
+            if (cliente == null){
+                request.setAttribute("erro", 4);
+                RequestDispatcher dispatcher = request.getRequestDispatcher("/logado/adm/erros.jsp");
+                dispatcher.forward(request, response);
+                return;
+            }
+
+            List<Proposta> propostasDoCliente = dao.read(cliente);
+            for (Proposta current : propostasDoCliente) {
+                if (Objects.equals(current.getCarro_id(), id) && current.getStatus() == 0) {
+                    result = 2;
+                    request.setAttribute("erro", result);
+                    RequestDispatcher dispatcher = request.getRequestDispatcher("/logado/adm/erros.jsp");
+                    dispatcher.forward(request, response);
+                    return;
+                }
+            }
             form(request, response);
         }catch (NumberFormatException e){
             request.setAttribute("erro", 400);
@@ -72,10 +91,6 @@ public class PropostaController extends HttpServlet {
                     break;
                 }
             }
-            System.out.println(valor);
-            System.out.println(cond);
-            System.out.println(carro.toString());
-            System.out.println(cliente.toString());
             result = result == 0? dao.insert(cliente,carro,valor,cond): result;
             request.setAttribute("erro", result);
 

@@ -11,7 +11,8 @@
     <title>Title</title>
 </head>
 <body>
-<form action="${pageContext.request.contextPath}/decisao/aceito" method="post">
+<form action="${pageContext.request.contextPath}/decisao/aceito/${requestScope.id}" method="post">
+    <input hidden type="number" name="id" value="${requestScope.id}">
     <input type="number" name="valor" placeholder="Valor da contra proposta"><br>
     <input type="datetime-local" id="reuniao" name="reuniao"><br>
     <input type="text" name="link" placeholder="link da reunião"><br>
