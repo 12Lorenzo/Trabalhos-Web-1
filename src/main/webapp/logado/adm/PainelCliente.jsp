@@ -8,6 +8,7 @@
     <meta charset="UTF-8">
 </head>
 <body>
+<fmt:bundle basename="messages">
 <h2>Propostas abertas:</h2>
 <table border="1" style="width: 400px; border: 1px solid black">
     <tr>
@@ -55,5 +56,6 @@
 
 </c:forEach>
 </table>
+</fmt:bundle>
 </body>
 </html>

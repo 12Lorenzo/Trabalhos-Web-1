@@ -8,6 +8,8 @@
 </head>
 <body>
 
+<fmt:bundle basename="messages">
+
 <h1>Lista de Usuários</h1>
 
 <table border="1">
@@ -156,5 +158,6 @@
     </c:forEach>
 
 </table>
+</fmt:bundle>
 </body>
 </html>

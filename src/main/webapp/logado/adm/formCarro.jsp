@@ -7,6 +7,7 @@
     <title>Title</title>
 </head>
 <body>
+<fmt:bundle basename="messages">
 <form action="${pageContext.request.contextPath}/carros/" method="post" enctype= "multipart/form-data">
 
     <label for="placa">Placa:</label><br>
@@ -42,5 +43,6 @@
 
 
 </form>
+</fmt:bundle>
 </body>
 </html>

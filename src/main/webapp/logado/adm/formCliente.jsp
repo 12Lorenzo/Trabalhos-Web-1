@@ -8,6 +8,7 @@
     <title>Title</title>
 </head>
 <body>
+<fmt:bundle basename="messages">
 <%--Cliente(cpf, telefone, sexo, nascimento)--%>
 <form action="${pageContext.request.contextPath}/cliente/${requestScope.get("formMethod")}/${requestScope.cliente_usr == null ? "*":requestScope.cliente_usr.codigo}" method="post">
     <label for="cpf">CPF:</label><br>
@@ -49,5 +50,6 @@
     <br>
     <input type="submit" value="Submit"><br>
 </form>
+</fmt:bundle>
 </body>
 </html>

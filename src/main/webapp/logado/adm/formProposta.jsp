@@ -8,6 +8,8 @@
 </head>
 <body>
 
+<fmt:bundle basename="messages">
+
 <form action="" method="post">
 
     <label for="valor">Valor:</label><br>
@@ -24,6 +26,6 @@
 
     <br>
 </form>
-
+</fmt:bundle>
 </body>
 </html>

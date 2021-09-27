@@ -12,6 +12,8 @@
 </head>
 <body>
 
+<fmt:bundle basename="messages">
+
 <form action="${pageContext.request.contextPath}/decisao/recusa/${requestScope.id}" method="post">
     <input hidden type="number" name="id" value="${requestScope.id}">
     <input type="number" name="valor" placeholder="Valor da contra proposta"><br>
@@ -20,5 +22,6 @@
     <input type="submit" value="Enviar" ><br>
 
 </form>
+</fmt:bundle>
 </body>
 </html>

@@ -19,6 +19,9 @@
 
                                                                                                                                                                                                                                                                                                                                                                                                                                      </head>
 <body>
+
+<fmt:bundle basename="messages">
+
 <a href="${pageContext.request.contextPath}/logado/adm/formCarro.jsp">Criar novo anuncio</a>
 
 <c:forEach var="carro" items="${ListaCarros}" varStatus="loop">
@@ -92,5 +95,6 @@
     </c:forEach>
     </td></tr></table>
 </c:forEach>
+</fmt:bundle>
 </body>
 </html>
