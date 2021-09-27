@@ -61,8 +61,10 @@ public class AceitoRecusaController extends HttpServlet {
             }
             if (result == 0 && request.getRequestURI().contains("aceito")) {
                 result = dao.aceitarRecusar(proposta, 1);
+                //todo mandar email
             } else if (result == 0 && request.getRequestURI().contains("recusa")) {
                 result = dao.aceitarRecusar(proposta, 2);
+                //todo mandar email
             }else{
                 System.out.println("algo está errado com o link");
             }

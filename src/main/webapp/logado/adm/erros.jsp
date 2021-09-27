@@ -29,7 +29,7 @@
         Sua Sessão como Cliente está inválida.
     </c:when>
     <c:when test = "${requestScope.erro == 5}">
-        Sua Sessão como Adm está inválida.
+        Sua Sessão como Administrador está inválida.
     </c:when>
     <c:when test = "${requestScope.erro == 6}">
         Um objeto com esse codigo já estava inserido no banco de dados.
@@ -37,9 +37,20 @@
     <c:when test = "${requestScope.erro == 7}">
         O objeto com esse codigo não existe.
     </c:when>
+    <c:when test = "${requestScope.erro == 8}">
+        Você não preencheu todos os campos do formulário.
+    </c:when>
+    <c:when test = "${requestScope.erro == 9}">
+        Você tentou inserir um objeto, entretanto, ele entrou em conflito com um objeto já inserido.
+        <br>
+        Tente usar outro email ou algo assim.
+    </c:when>
 
     <c:when test = "${requestScope.erro == 400}">
-        Requisição mal formada, por favor contate um adm.
+        Requisição mal formada.<br>
+        Você preencheu todos os campos?
+
+        <br>Por favor contate um adm.
     </c:when>
 
     <c:otherwise>

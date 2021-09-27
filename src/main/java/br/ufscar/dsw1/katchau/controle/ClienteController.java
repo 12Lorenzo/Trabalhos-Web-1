@@ -60,15 +60,6 @@ public class ClienteController extends HttpServlet {
         }
     }
 
-    private void lista(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.setCharacterEncoding("UTF-8");
-        List<Cliente> listaClientes = dao.read();
-        request.setAttribute("listaClientes", listaClientes);
-        System.out.println("-->" + listaClientes.toString());
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/logado/listas/listaCliente.jsp");
-        dispatcher.forward(request, response);
-    }
-
     private boolean verifier(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
         Usuario user = (Usuario) request.getSession().getAttribute("user");

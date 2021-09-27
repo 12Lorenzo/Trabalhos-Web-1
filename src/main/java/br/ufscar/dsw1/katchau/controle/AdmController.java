@@ -47,29 +47,7 @@ public class AdmController extends HttpServlet {
             dispatcher.forward(request, response);
         }
 
-        String action = request.getPathInfo();
-        if (action == null) {
-            action = "";
-        }
-        System.out.println("ação -> " + action);
-        try {
-            switch (action) {
-                case "/edit/":
-                    atualizar(request,response);
-                    break;
-                case "/create/":
-                    criar(request,response);
-                    break;
-                case "/delete/":
-                    deletar(request,response);
-                    break;
-                default:
-                    lista(request, response);
-                    break;
-            }
-        } catch (RuntimeException | IOException | ServletException e) {
-            throw new ServletException(e);
-        }
+        lista(request, response);
     }
 
     private void lista(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -94,22 +72,7 @@ public class AdmController extends HttpServlet {
         request.setAttribute("listaLojas", listaLojas);
 
 
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/logado/adm/painel.jsp");
-        dispatcher.forward(request, response);
-    }
-
-    private void deletar(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/logado/adm/formUsuario.jsp");
-        dispatcher.forward(request, response);
-    }
-
-    private void atualizar(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/logado/adm/formUsuario.jsp");
-        dispatcher.forward(request, response);
-    }
-
-    private void criar (HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/logado/adm/formUsuario.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/logado/adm/PainelAdm.jsp");
         dispatcher.forward(request, response);
     }
 

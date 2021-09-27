@@ -102,39 +102,11 @@ public class PropostaController extends HttpServlet {
         dispatcher.forward(request, response);
     }
 
-    private void lista(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        Cliente auxCli = cli.retornaCli("000.000.001");
-        System.out.println(auxCli);
-        if(auxCli != null) {
-            List<Proposta> listaPropostas = dao.read(auxCli); //Não esta funcionando
-            request.setAttribute("listaPropostas", listaPropostas);
-            System.out.println("-->" + listaPropostas.toString());
-        }
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/logado/listas/listaProposta.jsp");
-        dispatcher.forward(request, response);
-
-    }
-
-
     protected void form(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
         request.setAttribute("formMethod", "post");
         RequestDispatcher dispatcher = request.getRequestDispatcher("/logado/adm/formProposta.jsp");
         dispatcher.forward(request, response);
-    }
-
-    protected void aceitarRecusar(HttpServletRequest request, HttpServletResponse response, int op) throws ServletException, IOException{
-        if(op == 1) {
-            request.setCharacterEncoding("UTF-8");
-            request.setAttribute("formMethod", "post");
-            RequestDispatcher dispatcher = request.getRequestDispatcher("/logado/adm/formAceito.jsp");
-            dispatcher.forward(request, response);
-        } else{
-            request.setCharacterEncoding("UTF-8");
-            request.setAttribute("formMethod", "post");
-            RequestDispatcher dispatcher = request.getRequestDispatcher("/logado/adm/formRecusa.jsp");
-            dispatcher.forward(request, response);
-        }
     }
 
 }

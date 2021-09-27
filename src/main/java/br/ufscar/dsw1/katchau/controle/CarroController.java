@@ -66,7 +66,6 @@ public class CarroController extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
         req.setCharacterEncoding("UTF-8");
-        //todo criar um carro
         req.setAttribute("formMethod", "post");
         criar(req, resp);
     }
@@ -96,6 +95,7 @@ public class CarroController extends HttpServlet {
                 System.out.println("formItenssize " + formImg.size());
                 if (formImg != null && formImg.size() > 0) {
                     for (FileItem item : formImg) {
+                        //todo conferir se eh uma imagem e limitar a apenas 10
                         if (!item.isFormField()) {
                             String fileName = new File(item.getName()).getName();
                             System.out.println("oi rsrs");
@@ -188,7 +188,6 @@ public class CarroController extends HttpServlet {
                     result = 6;
                 }
 
-                //todo upload das imagens
                 result = mandarmagem(formImg, request, response, id_carro);
 
 

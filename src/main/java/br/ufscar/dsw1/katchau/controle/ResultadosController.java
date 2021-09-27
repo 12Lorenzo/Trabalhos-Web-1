@@ -29,13 +29,6 @@ public class ResultadosController extends HttpServlet {
         processRequest(request, response);
     }
 
-    private void lista(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        List<Carro> listaCarros = dao.getAll();
-        request.setAttribute("listaCarros", listaCarros);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/logado/listas/listaCarros.jsp");
-        dispatcher.forward(request, response);
-    }
-
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
