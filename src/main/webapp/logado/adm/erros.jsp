@@ -57,6 +57,10 @@
         <%--Vi provis enmeti objekton, tamen ĝi konfliktis kun jam enmetita objekto.<br>
         Provu uzi alian retpoŝton aŭ ion similan. --%>
     </c:when>
+    <c:when test = "${requestScope.erro == 10}">
+        Ocorreu um erro ao tentar enviar o email, provavelmente não foi configurado o login do gmail corretamente.<br>
+        Verifique o recurso config caso você seja o desenvolvedor.
+    </c:when>
 
     <c:when test = "${requestScope.erro == 400}">
         Requisição mal formada.<br>

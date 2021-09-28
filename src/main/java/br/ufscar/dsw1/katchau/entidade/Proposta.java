@@ -105,4 +105,15 @@ public class Proposta {
         this.id = id;
     }
 
+    @Override
+    public String toString() {
+        return "Proposta: (" +
+                "status=" + (status==0?"ABERTO":status==1?"ACEITO":"RECUSADO") +
+                ", data=" + data +
+                ", valor da proposta=" + val +
+                ", cpf do comprador='" + cpf + '\'' +
+                ", id do carro=" + carro_id +
+                ", condicao de pagamento='" + condPag + '\'' +
+                ')';
+    }
 }
