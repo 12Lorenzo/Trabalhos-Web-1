@@ -13,10 +13,14 @@
 <body>
 <fmt:bundle basename="messages">
 <form action="${pageContext.request.contextPath}/decisao/aceito/${requestScope.id}" method="post">
+
     <input hidden type="number" name="id" value="${requestScope.id}">
-    <input type="datetime-local" id="reuniao" name="reuniao"><br>
-    <input type="text" name="link" placeholder="link da reunião"><br>
-    <input type="text" name="mensagem" placeholder="mensagem"><br>
+    <label><fmt:message key="reuniao"/></label>
+    <input type="datetime-local" required="required" id="reuniao" name="reuniao"><br>
+    <label><fmt:message key="link"/></label>
+    <input type="text" required="required" name="link" placeholder="link da reunião"><br>
+    <label><fmt:message key="mensagem"/></label>
+    <input type="text" required="required" name="mensagem" placeholder="mensagem"><br>
 
     <input type="submit" value="Enviar" ><br>
 

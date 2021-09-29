@@ -2,84 +2,67 @@
 <%@ page isELIgnored="false"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+
 <html>
 <head>
     <title>Title</title>
 </head>
+<body>
 <c:if test="${requestScope.erro != 0}">
 <h1>Erro ${requestScope.erro}</h1>
 </c:if>
 <br>
+    <h1>
 <c:choose>
 
     <c:when test = "${requestScope.erro == 0}">
-        <h1>A operação foi bem sucedida.</h1>
-        <%--<h1>La operacio sukcesis. </h1>--%>
+        <fmt:message key="erro0" />
     </c:when>
 
     <c:when test = "${requestScope.erro == 1}">
-        A operação não foi bem sucedida.
-        <%--La operacio ne sukcesis. --%>
+        <fmt:message key="erro1" />
     </c:when>
     <c:when test = "${requestScope.erro == 2}">
-        Você já tem uma proposta aberta para esse veiculo.
-        <%--Vi jam havas malferman proponon por ĉi tiu veturilo. --%>
+        <fmt:message key="erro2" />
     </c:when>
     <c:when test = "${requestScope.erro == 3}">
-        Houve um erro na conexão com o banco de dados.
-        <%--Estis eraro konektante al la datumbazo. --%>
+        <fmt:message key="erro3"/>
     </c:when>
     <c:when test = "${requestScope.erro == 4}">
-        Sua Sessão como Cliente está inválida.
-        <%--Via Klienta Sesio ne validas. --%>
+        <fmt:message key="erro4"/>
     </c:when>
     <c:when test = "${requestScope.erro == 5}">
-        Sua Sessão como Administrador está inválida.
-        <%--Via Administrada Sesio ne validas. --%>
+        <fmt:message key="erro5"/>
     </c:when>
     <c:when test = "${requestScope.erro == 6}">
-        Um objeto com esse codigo já estava inserido no banco de dados.
-        <%--Objekto kun ĉi tiu kodo jam estis enmetita en la datumbazon. --%>
+        <fmt:message key="erro6"/>
     </c:when>
     <c:when test = "${requestScope.erro == 7}">
-        O objeto com esse codigo não existe.
-        <%--La objekto kun ĉi tiu kodo ne ekzistas. --%>
+        <fmt:message key="erro7" />
     </c:when>
     <c:when test = "${requestScope.erro == 8}">
-        Você não preencheu todos os campos do formulário.
-        <%--Vi ne plenigis ĉiujn kampojn en la formularo. --%>
+        <fmt:message key="erro8" />
     </c:when>
     <c:when test = "${requestScope.erro == 9}">
-        Você tentou inserir um objeto, entretanto, ele entrou em conflito com um objeto já inserido.
-
-        <br>
-        Tente usar outro email ou algo assim.
-        <%--Vi provis enmeti objekton, tamen ĝi konfliktis kun jam enmetita objekto.<br>
-        Provu uzi alian retpoŝton aŭ ion similan. --%>
+        <fmt:message key="erro9" />
     </c:when>
     <c:when test = "${requestScope.erro == 10}">
-        Ocorreu um erro ao tentar enviar o email, provavelmente não foi configurado o login do gmail corretamente.<br>
-        Verifique o recurso config caso você seja o desenvolvedor.
+        <fmt:message key="erro10" />
     </c:when>
 
     <c:when test = "${requestScope.erro == 400}">
-        Requisição mal formada.<br>
-        Você preencheu todos os campos?
-
-        <br>Por favor contate um adm.
-        <%--Malbone formita peto. <br>
-         Ĉu vi plenigis ĉiujn kampojn?
-
-         <br> Bonvolu kontakti adm. --%>
+        <fmt:message key="erro400"/>
     </c:when>
 
     <c:otherwise>
     </c:otherwise>
-</c:choose>
-<br>
-<br>
-<br>
-<button class="btn" onclick="window.location.href='${pageContext.request.contextPath}'">Voltar</button>
 
+</c:choose>
+    </h1>
+<br>
+<br>
+<br>
+<button class="btn" onclick="window.location.href='${pageContext.request.contextPath}'"><fmt:message key="voltar"/> </button>
+</fmt:bundle>
 </body>
 </html>

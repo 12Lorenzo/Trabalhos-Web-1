@@ -27,7 +27,7 @@
 <c:forEach var="carro" items="${ListaCarros}" varStatus="loop">
     <table border="1"><tr><td>
     <br>
-    <h1>Carro:</h1>
+    <h1><fmt:message key="carro"/></h1>
 
     <c:if test="${carro.getImages(pageContext.servletContext.getRealPath('upload')).size() > 0}">
 
@@ -63,7 +63,7 @@
         <td style="text-align: center">${carro.valor}</td>
     </tr>
     </table>
-    <h2>Propostas abertas:</h2>
+    <h2><fmt:message key="propAbertas"/></h2>
     <c:forEach var="proposta" items="${ListaPropostas.stream().filter(p -> p.status == 0 && p.carro_id == carro.id).toList()}">
         <table border="1" style="width: 400px; border: 1px solid black">
             <tr>
@@ -79,14 +79,25 @@
             </tr>
         </table>
     </c:forEach>
-    <h2>Propostas fechadas:</h2>
+    <h2><fmt:message key="propFechadas"/></h2>
     <c:forEach var="proposta" items="${ListaPropostas.stream().filter(p -> p.status != 0 && p.carro_id == carro.id).toList()}">
         <table border="1" style="width: 400px; border: 1px solid black">
             <tr>
                 <td>
                     <c:out value="${proposta.id}"/>
                 </td>
-                <td><c:out value="${proposta.status == 1 ? 'Aceito' : proposta.status == 0 ? 'Aberto' : 'Não Aceito'  }"/></td>
+                <td>
+                    <c:if test="${proposta.status == 0}">
+                        <fmt:message key="aberto"/>
+                    </c:if>
+                    <c:if test="${proposta.status == 1}">
+                        <fmt:message key="aceito"/>
+                    </c:if>
+                    <c:if test="${proposta.status == 2}">
+                        <fmt:message key="naoAceito"/>
+                    </c:if>
+
+                </td>
                 <td><c:out value="${proposta.data}"/></td>
                 <td><c:out value="${proposta.val}"/></td>
                 <td><c:out value="${proposta.condPag}"/></td>

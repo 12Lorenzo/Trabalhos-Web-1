@@ -12,11 +12,11 @@
 
 <form action="" method="post">
 
-    <label for="valor">Valor:</label><br>
-    <input type="number" step="0.01" id="valor" name="valor" value="0"><br>
+    <label for="valor"><fmt:message key="valor"/>:</label><br>
+    <input type="number" required="required" step="0.01" id="valor" name="valor" value="0"><br>
 
-    <label for="condPag">CondPag:</label><br>
-    <input type="text" id="condPag" name="cond" value="">
+    <label for="condPag"><fmt:message key="condPag"/>:</label><br>
+    <input type="text" required="required" id="condPag" name="cond" value="">
 
 
 

@@ -74,7 +74,7 @@
 
     <tr>
         <td>cnpj</td>
-        <td>descricao</td>
+        <td><fmt:message key="descricao"/> </td>
     </tr>
     <c:forEach var="loja" items="${listaLojas}">
 
@@ -88,7 +88,7 @@
 
 </table>
 
-<h1>Lista de Carros</h1>
+<h1><fmt:message key="lista_de_carros"/></h1>
 <br>
 
 <table border="1">
@@ -96,14 +96,14 @@
 
     <tr>
         <td>id</td>
-        <td>cnpj da loja</td>
-        <td>placa</td>
-        <td>modelo</td>
-        <td>chassi</td>
-        <td>descricao</td>
-        <td>ano</td>
-        <td>km</td>
-        <td>valor</td>
+        <td><fmt:message key="cnpj_loja"/></td>
+        <td><fmt:message key="placa"/></td>
+        <td><fmt:message key="modelo"/></td>
+        <td><fmt:message key="chassi"/></td>
+        <td><fmt:message key="descricao"/></td>
+        <td><fmt:message key="ano"/></td>
+        <td><fmt:message key="km"/></td>
+        <td><fmt:message key="valor"/></td>
     </tr>
     <c:forEach var="carro" items="${listaCarros}">
         <tr>
@@ -130,13 +130,13 @@
 
     <tr>
         <td>id</td>
-        <td>status</td>
-        <td>data</td>
-        <td>valor</td>
-        <td>cpf</td>
-        <td>cnpj</td>
-        <td>carro_id</td>
-        <td>condPag</td>
+        <td><fmt:message key="status"/></td>
+        <td><fmt:message key="data"/></td>
+        <td><fmt:message key="valor"/></td>
+        <td><fmt:message key="cpf"/></td>
+        <td><fmt:message key="cnpj"/></td>
+        <td><fmt:message key="carro_id"/></td>
+        <td><fmt:message key="condPag"/></td>
     </tr>
 
     <c:forEach var="proposta" items="${listaPropostas}">

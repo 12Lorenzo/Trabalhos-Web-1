@@ -8,8 +8,7 @@
     <meta charset="UTF-8">
 </head>
 <body>
-<fmt:bundle basename="messages">
-<h2>Propostas abertas:</h2>
+<h2><fmt:message key="propFechadas"/></h2>
 <table border="1" style="width: 400px; border: 1px solid black">
     <tr>
         <th>ID</th>
@@ -32,14 +31,14 @@
 
 </c:forEach>
 </table>
-<h2>Propostas fechadas:</h2>
+<h2><fmt:message key="propFechada"/></h2>
 <table border="1" style="width: 400px; border: 1px solid black">
     <tr>
         <th>ID</th>
-        <th>Data da proposta</th>
-        <th>Valor</th>
-        <th>Condição de Pagamento</th>
-        <th>Status</th>
+        <th><fmt:message key="dataProp"/></th>
+        <th><fmt:message key="valor"/></th>
+        <th><fmt:message key="condPag"/></th>
+        <th><fmt:message key="status"/></th>
     </tr>
 <c:forEach var="proposta" items="${ListaPropostas.stream().filter(p -> p.status != 0).toList()}">
 
