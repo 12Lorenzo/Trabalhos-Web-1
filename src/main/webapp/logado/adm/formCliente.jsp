@@ -3,6 +3,9 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/forms.css" />
+
+<%--Formulario responsavel por inserir um cliente.--%>
+
 <html>
 <head>
     <title>Title</title>

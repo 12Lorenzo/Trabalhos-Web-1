@@ -20,6 +20,9 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Objects;
 
+
+//Faz o controle de proposta
+
 @WebServlet(urlPatterns = "/proposta/*")
 public class PropostaController extends HttpServlet {
 

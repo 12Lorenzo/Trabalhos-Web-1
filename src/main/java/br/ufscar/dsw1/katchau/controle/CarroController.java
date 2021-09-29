@@ -26,6 +26,8 @@ import java.util.List;
 import static br.ufscar.dsw1.katchau.Constants.*;
 import static br.ufscar.dsw1.katchau.Constants.UPLOAD_DIRECTORY;
 
+//Faz o controler de carro
+
 @WebServlet(name="Carros", urlPatterns = "/carros/*")
 public class CarroController extends HttpServlet {
     private CarroDAO dao;
@@ -194,8 +196,7 @@ public class CarroController extends HttpServlet {
                 System.out.println("Entrou para dar insert " + id_carro);
             }
         } catch(RuntimeException | FileUploadException e){
-            //throw new ServletException(2);
-            System.out.println("erro :" + e);
+
             result = 400;
         }
         request.setAttribute("erro", result);

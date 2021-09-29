@@ -3,6 +3,8 @@ package br.ufscar.dsw1.katchau.entidade;
 
 import java.util.Date;
 
+//É a representação da classe Cliente
+
 public class Cliente {
     private String cpf;
     private String telefone;

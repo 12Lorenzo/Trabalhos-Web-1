@@ -15,6 +15,8 @@ import javax.servlet.annotation.*;
 import java.io.IOException;
 import java.util.List;
 
+//Faz o controle de validator
+
 @WebServlet(name = "Validator", value = "/Validator/*")
 public class Validator extends HttpServlet {
     private AuthDAO dao;

@@ -7,6 +7,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+//Faz acessos ao banco de dados
+
 public class AuthDAO extends  GenericDAO{
     public Usuario validate(String email, String senha) {
         String sql = "SELECT * from Usuario u where u.email = ?";

@@ -5,6 +5,7 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 //São as chamadas sql.
 
+//É a classe generica de DAO
 
 abstract public class GenericDAO {
 

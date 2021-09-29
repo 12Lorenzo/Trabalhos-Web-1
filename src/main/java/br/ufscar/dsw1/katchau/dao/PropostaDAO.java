@@ -12,6 +12,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Date;
 
+//Faz acessos ao banco de dados na tabela proposta
+
 public class PropostaDAO extends GenericDAO {
 
     public List<Proposta> read(Cliente cliente) {

@@ -19,6 +19,9 @@ import java.io.InputStream;
 import java.util.Date;
 import java.util.Properties;
 
+
+//Faz o controle das ações de Aceito e Recurso.
+
 @WebServlet(name = "AceitoRecusaController", value = "/decisao/*")
 public class AceitoRecusaController extends HttpServlet {
 

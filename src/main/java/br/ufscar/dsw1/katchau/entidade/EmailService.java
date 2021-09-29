@@ -10,6 +10,8 @@ import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.util.Properties;
 
+//É a classe responsavel por enviar o email
+
 public class EmailService {
 
 	public int send(InternetAddress from, InternetAddress to, String subject, String body, File file) {

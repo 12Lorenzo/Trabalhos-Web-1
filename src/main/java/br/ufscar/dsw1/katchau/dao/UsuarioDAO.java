@@ -14,6 +14,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+//Faz acessos ao banco de dados na tabela Usuario
+
 public class UsuarioDAO extends GenericDAO{
     public List<Usuario> getAll() {
 

@@ -8,6 +8,8 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
+//Faz acessos ao banco de dados e manipula carro
+
 public class CarroDAO extends GenericDAO{
 
     public List<Carro> getAll() {

@@ -13,6 +13,8 @@ import javax.servlet.annotation.*;
 import java.io.IOException;
 import java.util.List;
 
+//Faz o controle do painel de cliente
+
 @WebServlet(name = "PainelClienteController", value = "/painelCliente")
 public class PainelClienteController extends HttpServlet {
 

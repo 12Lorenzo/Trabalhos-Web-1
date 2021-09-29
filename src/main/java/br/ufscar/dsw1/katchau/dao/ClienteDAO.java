@@ -9,6 +9,8 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
+//Faz o acesso ao banco de dados na tabela cliente
+
 public class ClienteDAO extends GenericDAO implements Cloneable {
     public List<Cliente> read() {
         String sqlSelect = "SELECT * FROM Cliente";

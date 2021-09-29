@@ -20,6 +20,8 @@ import java.util.Date;
 import java.util.List;
 
 
+//Faz o controle de cliente
+
 @WebServlet(urlPatterns = "/cliente/*")
 public class ClienteController extends HttpServlet {
     private ClienteDAO dao;

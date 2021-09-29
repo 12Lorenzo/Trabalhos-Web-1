@@ -13,6 +13,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+//Faz o controle de resultado
+
 @WebServlet(name = "ResultadosController", value = "/results")
 public class ResultadosController extends HttpServlet {
     private CarroDAO dao;

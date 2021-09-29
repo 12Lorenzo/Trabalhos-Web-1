@@ -14,6 +14,8 @@ import javax.servlet.annotation.*;
 import java.io.IOException;
 import java.util.List;
 
+//Faz o controle do painel de loja
+
 @WebServlet(name = "PainelLojaController", value = "/painel")
 public class PainelLojaController extends HttpServlet {
     CarroDAO carroDAO;

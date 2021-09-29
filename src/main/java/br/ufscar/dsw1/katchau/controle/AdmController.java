@@ -12,6 +12,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
+//Faz o controle de Adm
+
 @WebServlet(urlPatterns = "/adm/*")
 public class AdmController extends HttpServlet {
 

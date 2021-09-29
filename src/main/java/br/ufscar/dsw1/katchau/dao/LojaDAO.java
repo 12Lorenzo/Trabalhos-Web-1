@@ -8,6 +8,8 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
+//Faz acessos ao banco de dados na tabela Loja
+
 public class LojaDAO extends GenericDAO{
     public List<Loja> read() {
         String sqlSelect = "SELECT * FROM Loja";
