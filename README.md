@@ -17,7 +17,7 @@ Esse preojeto consiste na implementação dos requisitos referentes ao documento
 
 **Caso queira que o programa envie emails registre seu email e senha no arquivo src/main/resources/config.properties.**
 
-## Como ecxecutar o código
+## Como executar o código
 
 Para executar esse software é obrigatório ter o docker-compose e o docker instalados
 
