@@ -35,7 +35,7 @@ Divisão na implementação da funcionalidade: Membro1 (50%) e Membro2 (50%)
 
 R2:
 
-O professor falou qeu não precisava por estarmo em dois no trabalho <br>
+O professor falou que não precisava por estarmos em dois no trabalho <br>
 ( ) Implementado ( ) Parcialmente implementado (X) Não implementado <br>
 
 
