@@ -26,6 +26,35 @@ Para executar esse software é obrigatório ter o docker-compose e o docker inst
 3º Após o docker-compose terminar, execute a query presente em db/MySQL/create.sql no banco de dados. <br>
 4º Está pronto para acessar. <br>
 
+## Logins
+#### Administrador
+```
+e-mail: ok@ok.com
+senha: ok
+```
+#### Clientes
+```
+e-mail: cliente@cliente.com
+senha: cliente
+```
+```
+e-mail: cliente2@cliente.com
+senha: cliente2
+```
+#### Lojas
+```
+e-mail: loja@loja.com
+senha: loja
+```
+```
+e-mail: loja2@loja.com
+senha: loja2
+```
+
+
+
+
+
 ## Requisitos
 
 R1:
